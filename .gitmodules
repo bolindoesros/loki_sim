@@ -1,0 +1,3 @@
+[submodule "Assets/Crest"]
+	path = Assets/Crest
+	url = https://github.com/NTU-Mecatron/Crest.git
