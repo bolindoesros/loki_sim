@@ -1630,7 +1630,7 @@ MonoBehaviour:
   _serializer:
     m_ImageSize: {x: 1280, y: 720}
     m_PerceptionCamera: {fileID: 3392732590852691974}
-    m_ConfidenceRate: 0.8
+    m_ConfidenceRate: 0.7
     m_Header:
       _source: {fileID: 0}
       _frame_id: camera_link
