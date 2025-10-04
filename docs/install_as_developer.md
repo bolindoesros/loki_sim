@@ -29,12 +29,13 @@ UnitySim/                           # Overall project structure
 └── .gitmodules                   # Git submodule configuration
 ```
 
-UnitySim integrates several specialized components as Git submodules:
+UnitySim integrates several specialized components:
 
 - **UnityAuvSim** - Main AUV simulation framework and Unity project
 - **UnityMavros** - Emulator for Mavros
 - **UnitySensors** - Comprehensive sensor simulation package
 - **com.unity.perception** - Unity's machine learning perception tools
+- **ROS-TCP-Connector** - ROS communication package
 - **Crest** - Advanced ocean and water graphics simulation
 
 ### Installation steps
@@ -48,6 +49,7 @@ cd Documents; mkdir UnitySim; cd UnitySim
 git clone --recurse-submodules git@github.com:NTU-Mecatron/UnityAuvSim.git
 git clone git@github.com:NTU-Mecatron/UnityMavros.git
 git clone git@github.com:NTU-Mecatron/com.unity.perception.git
+git clone git@github.com:NTU-Mecatron/ROS-TCP-Connector.git
 git clone git@github.com:NTU-Mecatron/UnitySensors.git
 ```
 
