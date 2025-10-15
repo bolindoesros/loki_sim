@@ -51,6 +51,7 @@ git clone git@github.com:NTU-Mecatron/UnityMavros.git
 git clone git@github.com:NTU-Mecatron/com.unity.perception.git
 git clone git@github.com:NTU-Mecatron/ROS-TCP-Connector.git
 git clone git@github.com:NTU-Mecatron/UnitySensors.git
+
 ```
 
 If you use other terminals, please adapt and run the commands separately.
@@ -63,7 +64,7 @@ After cloning all of them, please open the Unity Hub application, click on "Add"
 
 ![](images/opening_the_project.png)
 
-UnityHub will prompt you to install `Editor version 2022.3.62f2`. Please accept and install this version as it is a Long-Term Support (LTS) version. If you already have this version installed, you can skip this step.
+UnityHub will prompt you to install `Editor version 6000.2.7f2` (the latest Unity6 version at the time of writing). Please accept and install this version as it is a Long-Term Support (LTS) version. If you already have this version installed, you can skip this step.
 
 Upon opening the project for the first time, Unity will take some time to import all the assets and compile the scripts. Please be patient as this may take a few minutes. A lot of warnings may appear in the console, but you can safely press the "Clear" button to clear them all.
 
