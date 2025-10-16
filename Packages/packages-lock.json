@@ -227,6 +227,12 @@
       "source": "local",
       "dependencies": {}
     },
+    "com.unity.robotics.visualizations": {
+      "version": "file:../../ROS-TCP-Connector/com.unity.robotics.visualizations",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.searcher": {
       "version": "4.9.3",
       "depth": 2,
