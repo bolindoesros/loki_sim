@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da52735da9a66344bb7b54a822799c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentNamespace: /stereo_camera
+  _currentNamespace: stereo_camera
 --- !u!1 &201497288646270922
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,7 +919,7 @@ Transform:
   m_GameObject: {fileID: 2054383670114721277}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.0911, z: 0.1906}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1047,7 +1047,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4765210354887689201}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.90558946, z: -0.42415538, w: 0}
+  m_LocalRotation: {x: -0.000000018540419, y: 0.90558946, z: -0.42415535, w: -0.000000039584574}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1622,6 +1622,7 @@ Transform:
   - {fileID: 2324313471334243602}
   - {fileID: 887976701199069396}
   - {fileID: 2626327079188791861}
+  - {fileID: 6021492515283045771}
   m_Father: {fileID: 6805790553736295215}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6326006102551554818
@@ -1945,6 +1946,67 @@ MonoBehaviour:
   _flightController: {fileID: 2094644687007371675}
   _translationFactor: {x: 2, y: 1, z: 2}
   _rotationFactor: {x: 1, y: 1, z: 1}
+--- !u!1 &7687487312492894363
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6021492515283045771}
+  - component: {fileID: 4624620053472905720}
+  - component: {fileID: 1443242623721954199}
+  m_Layer: 13
+  m_Name: Gimbal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6021492515283045771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7687487312492894363}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2751756435974253560}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4624620053472905720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7687487312492894363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b52c7b2b0c79c341af4524867047396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityMavrosRuntime::UnityMavros.Actuators.GimbalActuator
+  _gimbalTransform: {fileID: 8744920390521305741}
+  _targetPitch: 0
+  _targetYaw: 0
+--- !u!114 &1443242623721954199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7687487312492894363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57deb75f1a4ae8747b63d5ef9b1d2b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityMavrosRuntime::UnityMavros.ROS.Actuators.GimbalROS
+  _serviceName: gimbal_control/manager/pitchyaw
 --- !u!1 &7753536681759645988
 GameObject:
   m_ObjectHideFlags: 3
@@ -1970,7 +2032,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7753536681759645988}
   serializedVersion: 2
-  m_LocalRotation: {x: 4.789271e-10, y: 0.9131548, z: -0.40761304, w: 0.0000000010729082}
+  m_LocalRotation: {x: -0.000000017817332, y: 0.9131548, z: -0.40761304, w: -0.000000039915264}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2056,7 +2118,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7851797410437063312}
   serializedVersion: 2
-  m_LocalRotation: {x: 4.489686e-11, y: 0.9203992, z: -0.39098, w: 1.057433e-10}
+  m_LocalRotation: {x: -0.000000017090276, y: 0.9203992, z: -0.39097995, w: -0.000000040231928}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2213,6 +2275,7 @@ GameObject:
   - component: {fileID: 420276379430803128}
   - component: {fileID: 3392732590852691974}
   - component: {fileID: 8262813216974479404}
+  - component: {fileID: 9091858057059064758}
   m_Layer: 0
   m_Name: PerceptionCamera
   m_TagString: MainCamera
@@ -2229,7 +2292,7 @@ Transform:
   m_GameObject: {fileID: 8735527474046870747}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0905, z: 0.2542}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0747}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2266,7 +2329,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.05
+  near clip plane: 0.01
   far clip plane: 10000
   field of view: 67.380135
   orthographic: 0
@@ -2532,6 +2595,22 @@ MonoBehaviour:
     m_Header:
       _source: {fileID: 0}
       _frame_id: camera_link
+--- !u!114 &9091858057059064758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735527474046870747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a6512c6d49c2244a1a77e382c678b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnitySensorsROSRuntime::UnitySensors.Sensor.TF.TFLink
+  _frequency: 10
+  _frame_id: perceptioncamera_link
+  _isTFRoot: 0
+  _children: []
 --- !u!1 &8770866855019304068
 GameObject:
   m_ObjectHideFlags: 0
