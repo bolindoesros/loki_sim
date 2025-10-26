@@ -24,7 +24,7 @@ public class FreeLookControl : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
         {
             // Enable camera rotation while mouse button held
             freeLookCam.m_XAxis.m_MaxSpeed = xAxisDefaultSpeed;
