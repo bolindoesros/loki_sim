@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6905920397858132091}
-  - component: {fileID: 8478415785726553676}
+  - component: {fileID: 7057401144029057555}
   m_Layer: 0
   m_Name: CameraSwitcher
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2977992559478280067}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8478415785726553676
+--- !u!114 &7057401144029057555
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,12 +41,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6682509224427203358}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c94236fb9b2c3d46b504a1ca1f6b2eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 4aebbe0065ecb02498cb51b14ecdaa5a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  m_Cam1: {fileID: 0}
-  m_Cam2: {fileID: 0}
-  _switchKey: 9
+  m_EditorClassIdentifier: Assembly-CSharp::PerceptionCameraSwitcher
+  m_Cameras:
+  - {fileID: 0}
+  - {fileID: 0}
+  m_SwitchKey: 9
 --- !u!1 &7914511641381813320
 GameObject:
   m_ObjectHideFlags: 0
