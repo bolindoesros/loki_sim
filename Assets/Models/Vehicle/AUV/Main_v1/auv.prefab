@@ -2555,7 +2555,7 @@ MonoBehaviour:
   manualSensorAffectSimulationTiming: 0
   simulationDeltaTime: 0.0166
   framesBetweenCaptures: 1
-  showVisualizations: 1
+  showVisualizations: 0
   alphaThreshold: 0.1
   overrideLayerMask: 0
   useAccumulation: 0
