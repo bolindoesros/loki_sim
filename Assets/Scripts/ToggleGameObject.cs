@@ -1,14 +1,23 @@
+using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ToggleGameObject : MonoBehaviour
 {
+    [SerializeField] private Toggle toggle;
     [SerializeField] private GameObject targetObject;
 
-    public void Toggle()
+    private void Start()
     {
-        if (targetObject != null)
+        if (toggle == null)
         {
-            targetObject.SetActive(!targetObject.activeSelf);
+            toggle = GetComponent<Toggle>();
         }
+        toggle.isOn = targetObject != null && targetObject.activeSelf;
+    }
+
+    public void Toggle(bool isOn)
+    {
+        targetObject.SetActive(isOn);
     }
 }
