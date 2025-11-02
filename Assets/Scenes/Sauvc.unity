@@ -286,18 +286,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &595341423 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 454515874151995707, guid: 7e9e4eb813d6a47498ff14d7d914e591,
-    type: 3}
-  m_PrefabInstance: {fileID: 2210638026998465065}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0d410a4ef658bc43a5f7617794a8efb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &739395433
 GameObject:
   m_ObjectHideFlags: 3
@@ -1423,7 +1411,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 394ca94f794cc7b46935b1ba802e1e76, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Unity.Perception.Runtime::UnityEngine.Perception.ROS.BoundingBoxPublisher
 --- !u!1001 &5059940525708554839
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1575,11 +1563,6 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.18632366
       objectReference: {fileID: 0}
-    - target: {fileID: 2110547461804812922, guid: 7b13226f84a676f49ac0775face2d169,
-        type: 3}
-      propertyPath: _serializer._header._source
-      value: 
-      objectReference: {fileID: 595341423}
     - target: {fileID: 2904319881543630254, guid: 7b13226f84a676f49ac0775face2d169,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
@@ -1635,11 +1618,6 @@ PrefabInstance:
       propertyPath: m_Lens.m_SensorSize.y
       value: 24
       objectReference: {fileID: 0}
-    - target: {fileID: 7722441315875614004, guid: 7b13226f84a676f49ac0775face2d169,
-        type: 3}
-      propertyPath: _serializer.m_Header._source
-      value: 
-      objectReference: {fileID: 595341423}
     - target: {fileID: 7942118179164538006, guid: 7b13226f84a676f49ac0775face2d169,
         type: 3}
       propertyPath: m_LocalRotation.w

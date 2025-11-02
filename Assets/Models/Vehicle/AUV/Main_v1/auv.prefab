@@ -2586,7 +2586,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 394ca94f794cc7b46935b1ba802e1e76, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Unity.Perception.Runtime::UnityEngine.Perception.ROS.BoundingBoxPublisher
   _frequency: 30
   _topicName: detection/bounding_boxes
   _serializer:
@@ -2701,7 +2701,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82c9819fecd8dca41a832896226e64c0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: UnityMavrosRuntime::UnityMavros.ROS.Sensors.StatePublisherROS
   _frequency: 4
   _topicName: state
   _serializer:
