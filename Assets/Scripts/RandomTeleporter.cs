@@ -21,9 +21,9 @@ public struct RandomGenerator
 public class RandomTeleporter : MonoBehaviour
 {
     [Tooltip("The object to teleport around. Can handle Arti. Bodies too.")]
-    [SerializeField] Transform TransformToTeleport;
+    [SerializeField] string vehicleName;
     [Tooltip("Expected location to teleport in.")]
-    [SerializeField] Transform ExpectedLocation;
+    [SerializeField] Transform expectedLocation;
 
     [SerializeField] RandomGenerator horizontalRange;
     [SerializeField] RandomGenerator forwardRange;
@@ -32,18 +32,20 @@ public class RandomTeleporter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Rigidbody[] RBparts = TransformToTeleport.gameObject.GetComponentsInChildren<Rigidbody>();
+        GameObject vehicleObj = GameObject.Find(vehicleName);
+        Transform transformToTeleport = vehicleObj.transform;
+        Rigidbody[] RBparts = transformToTeleport.gameObject.GetComponentsInChildren<Rigidbody>();
 
         var unityPosi = new Vector3(
-                        ExpectedLocation.position.x + horizontalRange.RandomValue(),
-                        ExpectedLocation.position.y,
-                        ExpectedLocation.position.z + forwardRange.RandomValue());
+                        expectedLocation.position.x + horizontalRange.RandomValue(),
+                        expectedLocation.position.y,
+                        expectedLocation.position.z + forwardRange.RandomValue());
         var unityOri = Quaternion.Euler(
-                        ExpectedLocation.rotation.eulerAngles.x,
-                        ExpectedLocation.rotation.eulerAngles.y + yawRange.RandomValue(),
-                        ExpectedLocation.rotation.eulerAngles.z);
+                        expectedLocation.rotation.eulerAngles.x,
+                        expectedLocation.rotation.eulerAngles.y + yawRange.RandomValue(),
+                        expectedLocation.rotation.eulerAngles.z);
 
-        TransformToTeleport.SetPositionAndRotation(unityPosi, unityOri);
+        transformToTeleport.SetPositionAndRotation(unityPosi, unityOri);
 
         foreach (var rb in RBparts)
         {

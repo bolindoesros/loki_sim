@@ -14,6 +14,7 @@ public class ToggleGameObject : MonoBehaviour
             toggle = GetComponent<Toggle>();
         }
         toggle.isOn = targetObject != null && targetObject.activeSelf;
+        toggle.onValueChanged.AddListener(Toggle);
     }
 
     public void Toggle(bool isOn)
