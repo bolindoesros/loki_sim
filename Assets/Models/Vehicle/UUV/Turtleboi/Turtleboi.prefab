@@ -299,7 +299,15 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2735452445850828026}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1725863377735994299, guid: a2b5624b893cfd749ba311b1709981bc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 569460298949225815}
+    - targetCorrespondingSourceObject: {fileID: 562799749430714842, guid: a2b5624b893cfd749ba311b1709981bc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4689037112715355424}
   m_SourcePrefab: {fileID: 100100000, guid: a2b5624b893cfd749ba311b1709981bc, type: 3}
 --- !u!4 &2239167218575265060 stripped
 Transform:
@@ -307,12 +315,53 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6066243248147674078}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4890029041068505189 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1725863377735994299, guid: a2b5624b893cfd749ba311b1709981bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6066243248147674078}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &569460298949225815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890029041068505189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bad7dc5e78b0bb42a84e5a31facdf60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotCfgLoader
+  filePath: Assets/Configs/robot.json
 --- !u!4 &5015273216223903787 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1276335581919097845, guid: a2b5624b893cfd749ba311b1709981bc,
     type: 3}
   m_PrefabInstance: {fileID: 6066243248147674078}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6044067627214246404 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 562799749430714842, guid: a2b5624b893cfd749ba311b1709981bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6066243248147674078}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4689037112715355424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044067627214246404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb2047c9f503764185bb1499d9b46b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SensorCfgLoader
+  cameraPrefab: {fileID: 2016422477619200586, guid: de8b828c9027fd54f889ca8858a318e7,
+    type: 3}
+  imuPrefab: {fileID: 3526848927119471300, guid: 0846c8022425fd14abb1786fd98a045f,
+    type: 3}
 --- !u!54 &6791976028646039957 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 751628547094630987, guid: a2b5624b893cfd749ba311b1709981bc,

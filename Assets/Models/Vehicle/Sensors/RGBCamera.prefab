@@ -9,14 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2016422477619200581}
-  - component: {fileID: 2016422477619200582}
-  - component: {fileID: 2016422477619200576}
-  - component: {fileID: 2016422477619200579}
-  - component: {fileID: 7476313626036288691}
-  - component: {fileID: 4098086994549005394}
-  - component: {fileID: -3080669207938463108}
+  - component: {fileID: 6894684222224699426}
   m_Layer: 0
-  m_Name: RGBCamera_ros
+  m_Name: RGBCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,16 +29,67 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2324062730876008818}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &2016422477619200582
-Camera:
+--- !u!114 &6894684222224699426
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016422477619200586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da52735da9a66344bb7b54a822799c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnitySensorsROSRuntime::UnitySensors.ROS.Utils.Namespacing.NamespaceManager
+  _currentNamespace: camera
+--- !u!1 &2324062730876008829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2324062730876008818}
+  - component: {fileID: 2324062730876008817}
+  - component: {fileID: 2324062730876008823}
+  - component: {fileID: 2324062730876008820}
+  - component: {fileID: 6663722794624452484}
+  - component: {fileID: 244367946987628389}
+  - component: {fileID: 7963556697855078731}
+  m_Layer: 0
+  m_Name: RGBCamera_ros
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2324062730876008818
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2324062730876008829}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.47103, y: 0, z: 4.13358}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2016422477619200581}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &2324062730876008817
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2324062730876008829}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
@@ -82,19 +128,19 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &2016422477619200576
+--- !u!114 &2324062730876008823
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016422477619200586}
+  m_GameObject: {fileID: 2324062730876008829}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1478023f72437a1488d09d4c2a1759c6, type: 3}
@@ -103,53 +149,53 @@ MonoBehaviour:
   _frequency: 10
   _resolution: {x: 640, y: 480}
   _fov: 30
---- !u!114 &2016422477619200579
+--- !u!114 &2324062730876008820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016422477619200586}
+  m_GameObject: {fileID: 2324062730876008829}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca85518969b9bf94aa9948188d795075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _frequency: 10
-  _topicName: /camera/color/camera_info
+  _topicName: camera_info
   _serializer:
-    _source: {fileID: 2016422477619200576}
+    _source: {fileID: 2324062730876008823}
     _header:
-      _source: {fileID: 2016422477619200576}
+      _source: {fileID: 2324062730876008823}
       _frame_id: camera_frame
---- !u!114 &7476313626036288691
+--- !u!114 &6663722794624452484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016422477619200586}
+  m_GameObject: {fileID: 2324062730876008829}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b474a6242e811f04488e3cb67b65dd35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _frequency: 10
-  _topicName: /camera/color/image/compressed
+  _topicName: image/compressed
   _serializer:
-    _source: {fileID: 2016422477619200576}
+    _source: {fileID: 2324062730876008823}
     _sourceTexture: 0
     _header:
-      _source: {fileID: 2016422477619200576}
+      _source: {fileID: 2324062730876008823}
       _frame_id: camera_frame
     quality: 75
---- !u!114 &4098086994549005394
+--- !u!114 &244367946987628389
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016422477619200586}
+  m_GameObject: {fileID: 2324062730876008829}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60a6512c6d49c2244a1a77e382c678b1, type: 3}
@@ -159,13 +205,13 @@ MonoBehaviour:
   _frame_id: camera_frame
   _isTFRoot: 0
   _children: []
---- !u!114 &-3080669207938463108
+--- !u!114 &7963556697855078731
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016422477619200586}
+  m_GameObject: {fileID: 2324062730876008829}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
@@ -184,6 +230,8 @@ MonoBehaviour:
   stopNaNs: 0
   taaSharpenStrength: 0.5
   TAAQuality: 1
+  taaSharpenMode: 0
+  taaRingingReduction: 0
   taaHistorySharpening: 0.35
   taaAntiFlicker: 0.5
   taaMotionVectorRejection: 0
@@ -217,6 +265,13 @@ MonoBehaviour:
   deepLearningSuperSamplingUseCustomAttributes: 0
   deepLearningSuperSamplingUseOptimalSettings: 1
   deepLearningSuperSamplingSharpening: 0
+  allowFidelityFX2SuperResolution: 1
+  fidelityFX2SuperResolutionUseCustomQualitySettings: 0
+  fidelityFX2SuperResolutionQuality: 0
+  fidelityFX2SuperResolutionUseCustomAttributes: 0
+  fidelityFX2SuperResolutionUseOptimalSettings: 1
+  fidelityFX2SuperResolutionEnableSharpening: 0
+  fidelityFX2SuperResolutionSharpening: 0
   fsrOverrideSharpness: 0
   fsrSharpness: 0.92
   exposureTarget: {fileID: 0}
@@ -234,6 +289,7 @@ MonoBehaviour:
     sssQualityMode: 0
     sssQualityLevel: 0
     sssCustomSampleBudget: 20
+    sssCustomDownsampleSteps: 0
     msaaMode: 1
     materialQuality: 0
   renderingPathCustomFrameSettingsOverrideMask:
