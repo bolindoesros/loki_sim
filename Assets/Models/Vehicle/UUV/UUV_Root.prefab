@@ -491,8 +491,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3938958224791553361}
+  - component: {fileID: 4351398164257491659}
   - component: {fileID: 7549316890752352570}
-  - component: {fileID: 3142160353352195422}
   - component: {fileID: 4911750215475883042}
   m_Layer: 13
   m_Name: Imu
@@ -516,6 +516,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6307086295752408843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4351398164257491659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3031476297395479503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 004b3fbf68dbaed4fbfe09414fc40324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityMavrosRuntime::UnityMavros.ROS.Sensors.IMUMsgPublisher
+  _frequency: 50
+  _topicName: imu/data
+  _serializer:
+    _source: {fileID: 0}
+    _header:
+      _source: {fileID: 0}
+      _frame_id: 
 --- !u!114 &7549316890752352570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,25 +585,6 @@ MonoBehaviour:
   - 0
   - 0
   - 0
---- !u!114 &3142160353352195422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3031476297395479503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c47c42043b800c4a9a6595f963c7c6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _frequency: 50
-  _topicName: imu/data
-  _serializer:
-    _source: {fileID: 0}
-    _header:
-      _source: {fileID: 7549316890752352570}
-      _frame_id: imu_link
 --- !u!114 &4911750215475883042
 MonoBehaviour:
   m_ObjectHideFlags: 0
