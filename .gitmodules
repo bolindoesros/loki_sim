@@ -1,3 +1,9 @@
 [submodule "Assets/Crest"]
 	path = Assets/Crest
 	url = git@github.com:NTU-Mecatron/Crest.git
+[submodule "Packages/com.nwh.common"]
+	path = Packages/com.nwh.common
+	url = git@github.com:NTU-Mecatron/com.nwh.common.git
+[submodule "Packages/com.nwh.dynamicwaterphysics"]
+	path = Packages/com.nwh.dynamicwaterphysics
+	url = git@github.com:NTU-Mecatron/com.nwh.dynamicwaterphysics.git
