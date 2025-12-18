@@ -6,66 +6,66 @@ public class PerceptionCameraSwitcher : MonoBehaviour
     /// <summary>
     /// Switch between multiple Cameras (including PerceptionCameras) using a hotkey.
     /// It only sets active/inactive the Camera component, not the entire GameObject.
-    /// For PerceptionCameras, it enables/disables the visualization, lets the Camera component always be enabled, but modifies its depth accordingly.
+    /// For PerceptionCameras, it enables/disables the visualization, lets the Camera component always be enabled, but modifies its target display accordingly.
     /// </summary>
 
     [Header("Camera List")]
-    [SerializeField] Camera[] m_Cameras;
+    [SerializeField] Camera[] _cameras;
 
     [Header("Hotkey")]
-    [SerializeField] KeyCode m_SwitchKey = KeyCode.Tab;
+    [SerializeField] KeyCode _switchKey = KeyCode.Tab;
 
-    int m_CurrentCameraIndex = 0;
-    readonly int m_CameraDepthActive = 5;
-    readonly int m_CameraDepthInactive = -5;
+    int _currentCameraIndex = 0;
+    readonly int _mainDisplay = 0;
+    readonly int _unusedDisplay = 1;
 
     void Start()
     {
-        if (m_Cameras == null || m_Cameras.Length == 0)
+        if (_cameras == null || _cameras.Length == 0)
         {
-            Debug.LogWarning("PerceptionCameraSwitcher: No cameras assigned!");
+            Debug.LogWarning("CameraSwitcher: No cameras assigned!");
             return;
         }
 
         // Deactivate all cameras
-        for (int i = 0; i < m_Cameras.Length; i++)
+        for (int i = 0; i < _cameras.Length; i++)
         {
-            DeactivateCamera(m_Cameras[i]);
+            DeactivateCamera(_cameras[i]);
         }
 
         // Activate the first valid camera
-        ActivateCamera(m_CurrentCameraIndex);
+        ActivateCamera(_currentCameraIndex);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(m_SwitchKey))
+        if (Input.GetKeyDown(_switchKey))
         {
-            if (m_Cameras == null || m_Cameras.Length == 0)
+            if (_cameras == null || _cameras.Length == 0)
                 return;
 
             // Deactivate current camera
-            if (m_Cameras[m_CurrentCameraIndex] != null)
+            if (_cameras[_currentCameraIndex] != null)
             {
-                DeactivateCamera(m_Cameras[m_CurrentCameraIndex]);
+                DeactivateCamera(_cameras[_currentCameraIndex]);
             }
 
             // Move to next camera
-            m_CurrentCameraIndex = (m_CurrentCameraIndex + 1) % m_Cameras.Length;
-            ActivateCamera(m_CurrentCameraIndex);
+            _currentCameraIndex = (_currentCameraIndex + 1) % _cameras.Length;
+            ActivateCamera(_currentCameraIndex);
         }
     }
 
     void ActivateCamera(int index)
     {
         // Check if camera is valid
-        if (m_Cameras[index] == null || !m_Cameras[index].gameObject.activeInHierarchy)
+        if (_cameras[index] == null || !_cameras[index].gameObject.activeInHierarchy)
         {
             // Try next camera recursively
-            int nextIndex = (index + 1) % m_Cameras.Length;
-            if (nextIndex != m_CurrentCameraIndex) // Prevent infinite loop
+            int nextIndex = (index + 1) % _cameras.Length;
+            if (nextIndex != _currentCameraIndex) // Prevent infinite loop
             {
-                m_CurrentCameraIndex = nextIndex;
+                _currentCameraIndex = nextIndex;
                 ActivateCamera(nextIndex);
             }
             else
@@ -76,8 +76,8 @@ public class PerceptionCameraSwitcher : MonoBehaviour
         }
 
         // Activate the selected camera
-        Camera cam = m_Cameras[index];
-        cam.depth = m_CameraDepthActive;
+        Camera cam = _cameras[index];
+        cam.targetDisplay = _mainDisplay;
         cam.enabled = true;
 
         // If it's a PerceptionCamera, enable visualization
@@ -93,7 +93,7 @@ public class PerceptionCameraSwitcher : MonoBehaviour
         if (cam == null)
             return;
 
-        cam.depth = m_CameraDepthInactive;
+        cam.targetDisplay = _unusedDisplay;
         if (cam.TryGetComponent<PerceptionCamera>(out var pCam))
         {
             // Keep component enabled so it keeps capturing but disable visualization

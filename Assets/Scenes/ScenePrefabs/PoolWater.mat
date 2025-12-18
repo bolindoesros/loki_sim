@@ -84,10 +84,14 @@ Material:
     - _Crest_DirectTerm: 1
     - _Crest_FoamEnabled: 1
     - _Crest_NormalMapEnabled: 1
-    - _Crest_NormalsStrengthOverall: 0.25
-    - _Crest_OcclusionUnderwater: 1
+    - _Crest_NormalsStrengthOverall: 0.2
+    - _Crest_Occlusion: 0.8
+    - _Crest_OcclusionUnderwater: 0.8
+    - _Crest_PlanarReflectionsDistortion: 1
     - _Crest_PlanarReflectionsEnabled: 1
+    - _Crest_PlanarReflectionsIntensity: 0.6
     - _Crest_SSSEnabled: 0
+    - _Crest_Smoothness: 1
     - _Crest_TotalInternalReflectionIntensity: 1
     - _CullMode: 0
     - _CullModeForward: 0
@@ -101,10 +105,12 @@ Material:
     - _StencilRefGBuffer: 10
     - _StencilRefMV: 40
     - _StencilWriteMaskDepth: 9
+    - _SurfaceType: 1
+    - _ZTestDepthEqualForOpaque: 4
     - _ZTestGBuffer: 3
     m_Colors:
-    - _Crest_Absorption: {r: 0.15525632, g: 0.021996856, b: -0, a: 1}
-    - _Crest_AbsorptionColor: {r: 0.29019603, g: 0.83921576, b: 1, a: 0.019607844}
+    - _Crest_Absorption: {r: 0.220668, g: 0.11969344, b: 0.04278334, a: 1}
+    - _Crest_AbsorptionColor: {r: 0.37647057, g: 0.58866805, b: 0.827451, a: 0.03529412}
     - _Crest_Scattering: {r: 0.035294108, g: 0.19962804, b: 0.30588236, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []

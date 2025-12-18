@@ -60,7 +60,6 @@ GameObject:
   - component: {fileID: 8728283564122504956}
   - component: {fileID: 368135763838353420}
   - component: {fileID: 6486738515869573357}
-  - component: {fileID: 1684041745355407476}
   - component: {fileID: 1292709185712579477}
   - component: {fileID: 2624546540918239132}
   m_Layer: 0
@@ -156,37 +155,6 @@ MonoBehaviour:
   _frame_id: stereo_right_link
   _isTFRoot: 0
   _children: []
---- !u!114 &1684041745355407476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8728283564122504949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b0c0a69611596146aceb2f60532940c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _version: 0
-  _mode: 0
-  _filterOceanData: 13
-  _meniscus: 1
-  _depthFogDensityFactor: 1
-  _volumeGeometry: {fileID: 0}
-  _invertCulling: 0
-  _enableShaderAPI: 0
-  _transparentObjectLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  _copyOceanMaterialParamsEachFrame: 1
-  _farPlaneMultiplier: 0.68
-  _debug:
-    _viewOceanMask: 0
-    _disableOceanMask: 0
-    _viewStencil: 0
-    _disableHeightAboveWaterOptimization: 0
-    _disableArtifactCorrection: 0
 --- !u!20 &1292709185712579477
 Camera:
   m_ObjectHideFlags: 0
@@ -390,7 +358,6 @@ GameObject:
   - component: {fileID: 8820233333947883595}
   - component: {fileID: 458581366331727547}
   - component: {fileID: 6432075521527594586}
-  - component: {fileID: 4078415846386837564}
   - component: {fileID: 6275292051922083269}
   - component: {fileID: 7134254188472273055}
   m_Layer: 0
@@ -486,37 +453,6 @@ MonoBehaviour:
   _frame_id: stereo_left_link
   _isTFRoot: 0
   _children: []
---- !u!114 &4078415846386837564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8820233333947883586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b0c0a69611596146aceb2f60532940c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _version: 0
-  _mode: 0
-  _filterOceanData: 13
-  _meniscus: 1
-  _depthFogDensityFactor: 1
-  _volumeGeometry: {fileID: 0}
-  _invertCulling: 0
-  _enableShaderAPI: 0
-  _transparentObjectLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  _copyOceanMaterialParamsEachFrame: 1
-  _farPlaneMultiplier: 0.68
-  _debug:
-    _viewOceanMask: 0
-    _disableOceanMask: 0
-    _viewStencil: 0
-    _disableHeightAboveWaterOptimization: 0
-    _disableArtifactCorrection: 0
 --- !u!20 &6275292051922083269
 Camera:
   m_ObjectHideFlags: 0

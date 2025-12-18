@@ -37,7 +37,7 @@ public class RobotCfgLoader : MonoBehaviour
     string filePath = "robot.json";
     RobotCfg robotCfg;
 
-    private void Awake()
+    void Awake()
     {
         JsonConvert.DefaultSettings = () => new JsonSerializerSettings
         {
@@ -83,7 +83,7 @@ public class RobotCfgLoader : MonoBehaviour
         }
     }
 
-    private RobotCfg CreateSampleConfig()
+    RobotCfg CreateSampleConfig()
     {
         RobotCfg defaultCfg = new ()
         {
