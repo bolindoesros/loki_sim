@@ -7,3 +7,15 @@
 [submodule "Packages/com.waveharmonic.crest"]
 	path = Packages/com.waveharmonic.crest
 	url = git@github.com:NTU-Mecatron/com.waveharmonic.crest.git
+[submodule "Packages/com.unity.perception"]
+	path = Packages/com.unity.perception
+	url = git@github.com:NTU-Mecatron/com.unity.perception.git
+[submodule "Packages/UnitySensors"]
+	path = Packages/UnitySensors
+	url = git@github.com:NTU-Mecatron/UnitySensors.git
+[submodule "Packages/ROS-TCP-Connector"]
+	path = Packages/ROS-TCP-Connector
+	url = git@github.com:NTU-Mecatron/ROS-TCP-Connector.git
+[submodule "Packages/com.mecatron.multi-domain-simulation"]
+	path = Packages/com.mecatron.multi-domain-simulation
+	url = git@github.com:NTU-Mecatron/com.mecatron.multi-domain-simulation.git

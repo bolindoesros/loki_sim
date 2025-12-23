@@ -13,40 +13,53 @@ If you just want to run the simulation, please refer to the [download guide](dow
 
 ### Project structure
 
-This is a comprehensive Unity simulation platform that integrates multiple specialized components as Git submodules:
+This is a comprehensive Unity simulation platform that integrates multiple specialized components as Git submodules within the Unity Packages directory:
 
 ```
-UnitySim/                           # Overall project structure
-├── UnityAuvSim/                   # Core AUV simulation project (this repo)
-│   ├── Assets/                    # Unity project assets
-│   │   ├── Crest/                # Ocean and water simulation system
-│   │   ├── Models/               # 3D models and meshes
-│   │   ├── Perception/           # Labeller for perception camera
-│   │   ├── Resources/            # Runtime loadable assets
-│   │   ├── Scenes/               # Unity scene files
-│   │   ├── Scripts/              # C# scripts for simulation logic
-│   │   ├── Settings/             # Project configuration files
-│   │   └── TextMesh Pro/         # Text rendering system
-│   ├── docs/                     # Documentation
-│   ├── Library/                  # Unity generated files (auto-generated)
-│   ├── Packages/                 # Unity Package Manager dependencies
-│   ├── ProjectSettings/          # Unity project configuration
-│   └── *.csproj, *.sln          # Visual Studio project files
-├── UnityMavros/                   # MAVLink/ROS bridge integration
-├── UnitySensors/                  # Sensor simulation framework
-├── ROS-TCP-Connector/            # ROS communication package
-├── com.unity.perception/          # Unity ML perception tools
-└── .gitmodules                   # Git submodule configuration
+UnityMDS/                       # Core AUV simulation project (this repo)
+├── Assets/                        # Unity project assets
+│   ├── Images/                   # Image assets
+│   ├── Models/                   # 3D models and meshes
+│   ├── Perception/               # Labeller for perception camera
+│   ├── Resources/                # Runtime loadable assets
+│   ├── Samples/                  # Sample assets and scenes
+│   ├── Scenes/                   # Unity scene files
+│   │   ├── MenuScene.unity      # Main menu scene
+│   │   ├── PersistentScene.unity # Persistent scene for global systems
+│   │   ├── Sauvc.unity          # SAUVC competition scene
+│   │   └── Sauvc/               # SAUVC scene-specific assets
+│   ├── Scripts/                  # C# scripts for simulation logic
+│   ├── Settings/                 # Project configuration files
+│   ├── TextMesh Pro/             # Text rendering system
+│   └── UI/                       # UI elements and prefabs
+├── Packages/                      # Unity Package Manager dependencies
+│   ├── com.mecatron.multi-domain-simulation/  # Multi-domain simulation framework (submodule)
+│   ├── com.nwh.common/                        # NWH common utilities (submodule)
+│   ├── com.nwh.dynamicwaterphysics/          # Dynamic water physics (submodule)
+│   ├── com.unity.perception/                  # Unity ML perception tools (submodule)
+│   ├── com.waveharmonic.crest/               # Crest ocean simulation (submodule)
+│   ├── ROS-TCP-Connector/                     # ROS communication package (submodule)
+│   ├── UnitySensors/                          # Sensor simulation framework (submodule)
+│   ├── manifest.json                          # Package manifest
+│   └── packages-lock.json                     # Package lock file
+├── ProjectSettings/               # Unity project configuration
+├── docs/                         # Documentation
+├── Library/                      # Unity generated files (auto-generated)
+├── Logs/                         # Unity log files (auto-generated)
+├── UserSettings/                 # User-specific settings (auto-generated)
+├── .gitmodules                   # Git submodule configuration
+└── *.csproj, *.sln              # Visual Studio project files (auto-generated)
 ```
 
-UnitySim integrates several specialized components:
+UnityMDS integrates several specialized components as submodules in the Packages directory:
 
-- **UnityAuvSim** - Main AUV simulation framework and Unity project
-- **UnityMavros** - Emulator for Mavros
-- **UnitySensors** - Comprehensive sensor simulation package
-- **com.unity.perception** - Unity's machine learning perception tools
-- **ROS-TCP-Connector** - ROS communication package
-- **Crest** - Advanced ocean and water graphics simulation
+- **com.mecatron.multi-domain-simulation** - Multi-domain simulation framework for complex system modeling
+- **com.nwh.common** - NWH common utilities and shared functionality
+- **com.nwh.dynamicwaterphysics** - Dynamic water physics simulation
+- **com.unity.perception** - Unity's machine learning perception tools for synthetic data generation
+- **com.waveharmonic.crest** - Advanced ocean and water graphics simulation (Crest)
+- **ROS-TCP-Connector** - ROS communication package for Unity-ROS integration
+- **UnitySensors** - Comprehensive sensor simulation package (cameras, sonar, IMU, etc.)
 
 ### Installation steps
 
@@ -56,21 +69,25 @@ Open a new powershell terminal (Windows) and copy-paste the entire block below t
 
 ```powershell
 cd Documents; mkdir UnitySim; cd UnitySim
-git clone --recurse-submodules git@github.com:NTU-Mecatron/UnityAuvSim.git
-git clone git@github.com:NTU-Mecatron/UnityMavros.git
-git clone git@github.com:NTU-Mecatron/com.unity.perception.git
-git clone git@github.com:NTU-Mecatron/ROS-TCP-Connector.git
-git clone git@github.com:NTU-Mecatron/UnitySensors.git
-
+git clone --recurse-submodules git@github.com:NTU-Mecatron/UnityMDS.git
 ```
 
 If you use other terminals, please adapt and run the commands separately.
 
-> Note: We did not put all these submodules inside a single repository because of some bugs regarding Git LFS. You may also run into some warnings regarding Git LFS when cloning `UnitySensors` but you can safely ignore them.
+The `--recurse-submodules` flag will automatically clone all the submodules in the `Packages` directory, including:
+- com.mecatron.multi-domain-simulation
+- com.nwh.common
+- com.nwh.dynamicwaterphysics  
+- com.unity.perception
+- com.waveharmonic.crest (Crest ocean simulation)
+- ROS-TCP-Connector
+- UnitySensors
+
+> Note: You may run into some warnings regarding Git LFS when cloning `UnitySensors` but you can safely ignore them.
 
 ### Opening the project in Unity
 
-After cloning all of them, please open the Unity Hub application, click on "Add", and select the folder **`UnityAuvSim`** inside the `UnitySim` folder you just created. This will add the project to your Unity Hub.
+After cloning the repository with all its submodules, please open the Unity Hub application, click on "Add", and select the **`UnityMDS`** folder. This will add the project to your Unity Hub.
 
 ![](images/opening_the_project.png)
 
@@ -78,7 +95,7 @@ UnityHub will prompt you to install `Editor version 6000.2.8f1` (the latest Unit
 
 Upon opening the project for the first time, Unity will take some time to import all the assets and compile the scripts. Please be patient as this may take a few minutes. A lot of warnings may appear in the console, but you can safely press the "Clear" button to clear them all.
 
-Proceed to open any of the scenes available in the `Assets/Scenes`. For example, upon opening the `sauvc` scene, you should see something like this:
+Proceed to open any of the scenes available in [Assets/Scenes](../Assets/Scenes). For example, upon opening the [Sauvc.unity](../Assets/Scenes/Sauvc.unity) scene, you should see something like this:
 
 ![](images/sauvc_scene.png)
 
@@ -88,11 +105,11 @@ On Windows, many people often use Visual Studio as their IDE for Unity developme
 
 To select your preferred IDE, go to `Edit -> Preferences -> External Tools` and select either Visual Studio or VSCode as your external script editor.
 
-To track git changes, since we have many repositories (aka packages) in this project, it is recommended to open the entire `UnitySim` (the parent of the simulation) folder as a workspace in VSCode. This way, you can track changes across all repositories in one place, all in VSCode's Source Control tab.
+To track git changes, since we have multiple packages (submodules) in this project, it is recommended to open the entire `UnityMDS` (the root of the repository) folder as a workspace in VSCode. This way, you can track changes across all submodules in one place, all in VSCode's Source Control tab.
 
 ![](images/vscode_workspace.png)
 
-> Note: When you double click on a script in Unity, it will open the script in the folder of the simulation project (e.g., `UnityAuvSim`). This is different from opening the entire `UnitySim` folder as a workspace. You can still edit the script, but you will not be able to track git changes across all repositories in the Source Control tab. Hence, you can continue with this, and only open the entire `UnitySim` folder as a workspace when you want to track git changes and ready to commit.
+> Note: When you double click on a script in Unity, it will open the script in the context of the UnityMDS project. You can still edit the script, but for comprehensive git management across all submodules, open the entire `UnityMDS` folder as a workspace when you want to track git changes and are ready to commit.
 
 ### Git notes
 
@@ -106,4 +123,4 @@ A few things to note regarding git workflow:
 
 4. Unity sometimes makes changes to a lot of files which are not related to your feature or bug fix. Please do not commit these, unless you are sure that they are related to your feature or bug fix. If you are unsure, please ask the project manager.
 
-5. Be aware which scripts/components/prefabs should be created in the main project (`UnityAuvSim`) and which should be created in the packages (e.g., `UnitySensors`). If you are unsure, please ask the project manager.
+5. Be aware which scripts/components/prefabs should be created in the main project (`UnityMDS`) and which should be created in the packages (e.g., `UnitySensors`). If you are unsure, please ask the project manager.

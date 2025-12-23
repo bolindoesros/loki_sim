@@ -1,16 +1,16 @@
-# UnitySim for underwater robotics
+# UnityMDS: A High-Fidelity Multi-Drone, Multi-Domain Simulator for Maritime Robotics
 
 ## Introduction
 
 ![](docs/images/photoshoot.png)
 
-UnitySim is a simulation environment for underwater robotics, created to test out autonomous algorithms before they are deployed on real vehicles. It is developed by [Mecatron](https://mecatron.sg/) to simulate AUV competitions such as the Singapore AUV Challenge and RoboSub. Future support for other types of vehicles such as surface vessels and aerial drones is only possible if there are more contributors to the project.
+UnityMDS (Multi-Domain Simulator) is a simulation environment for UAV-USV-UUV, created to test out autonomous algorithms before they are deployed on real vehicles. It is developed by [Mecatron](https://mecatron.sg/) to simulate many maritime-related competitions such as the Singapore AUV Challenge, RoboSub and RobotX.
 
 ## Features
 
 ### Sensors
 
-UnitySim comes with a suite of sensors commonly found in robotics; these sensors can be found in the package `UnitySensors`.
+UnityMDS comes with a suite of sensors commonly found in robotics; these sensors can be found in the package `UnitySensors`.
 - IMU
 - Depth, heading sensor
 - Camera
@@ -25,13 +25,13 @@ This simulator **emulates** the physics of underwater vehicles, but does not sim
 
 It also **emulates** `mavros`, which is a ROS package typically used for the ArduPilot family of autopilots. This means that you do not need to plug in a real autopilot or run a SITL, but the simulator will behave as if there is a real autopilot running. The vehicle can be controlled through `mavros` topics and services, just like a real vehicle.
 
-UnitySim also has actuators which are specifically designed for Mecatron's AUV, for SAUVC and RoboSub competitions:
+UnityMDS also has actuators which are specifically designed for Mecatron's AUV, for SAUVC and RoboSub competitions:
 - Torpedo launcher
 - Marker dropper
 
 ### ROS2 integration
 
-UnitySim has built-in support for ROS2. This allows for seamless integration between Unity and ROS2, allowing users to leverage the power of ROS2 for their autonomous algorithms.
+UnityMDS has built-in support for ROS2. This allows for seamless integration between Unity and ROS2, allowing users to leverage the power of ROS2 for their autonomous algorithms.
 
 
 ## Tutorials
@@ -47,7 +47,7 @@ Guides for adding custom vehicles, sensors, and environments will come when ther
 
 The project has already installed the following Unity packages and would like to thank the authors of these packages:
 
-- Water graphics: [Crest Water 4 HDRP](https://crest.readthedocs.io/en/stable/?rp=hdrp).
+- Water graphics: [Crest Water 5 HDRP](https://crest.readthedocs.io/en/stable/?rp=hdrp).
 
 - ROS2 integration inside Unity: [ROS-TCP-Connector](https://github.com/Unity-Technologies/ROS-TCP-Connector.git)
 

@@ -1860,9 +1860,10 @@ MonoBehaviour:
   _debugLinearVelocity: {x: 0, y: 0, z: 0}
   _debugAngularVelocity: {x: 0, y: 0, z: 0}
   _showCob: 1
+  _useKgUnitForForce: 1
   _totalBuoyancy: 3.62991
   _centerOfBuoyancy: {x: 0.0007004738, y: 0.059259772, z: 0.0154800415}
-  _netForce: {x: 0, y: 3.6299086, z: 0}
+  _netForce: {x: 0, y: -0.0000011665741, z: 0}
   _netTorque: {x: 0.110298455, y: 0, z: 0.0072874003}
   _waterObjectsDebugInfo:
   - name: Top Cover drag profile
@@ -8108,8 +8109,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1365093268140571981}
   - component: {fileID: 1175180954208966904}
-  - component: {fileID: 3810840359075043299}
   - component: {fileID: 3118167293236257557}
+  - component: {fileID: 3568224434766466602}
   - component: {fileID: 4552555446460806382}
   m_Layer: 0
   m_Name: Kevin v2
@@ -8205,7 +8206,7 @@ ArticulationBody:
   m_Immovable: 0
   m_UseGravity: 1
   m_CollisionDetectionMode: 0
---- !u!114 &3810840359075043299
+--- !u!114 &3118167293236257557
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8214,9 +8215,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 2780308596017674093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64ba8ee6dd769834e869b5809aa163b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 03193bb0c53334544bd0af2bdd029b6c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityMavrosRuntime::UnityMavros.AP_FlightController.FC_Base
+  m_EditorClassIdentifier: UnityMavrosRuntime::UnityMavros.AP_FlightController.PhysicsPropertiesSetter
+  _mass: 14.7
+  _linearDamping: 0.5
+  _angularDamping: 0.5
+  _centerOfMass: {x: 0, y: 0, z: 0.015}
+  _inertiaTensor: {x: 0.65, y: 0.6, z: 0.4}
+  _inertiaTensorRotation: {x: 0, y: 0, z: 0, w: 1}
+  _showCom: 1
+  _showInertiaEllipsoid: 0
+  _ellipsoidScale: 0.2
+--- !u!114 &3568224434766466602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2780308596017674093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb40f6b05c4837ca28679a854320d7b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDS_Runtime::MDS.AP_FlightController.Sub.Sub_FC
   _propellers:
   - {fileID: 1839385173633579359}
   - {fileID: 7409208545096198511}
@@ -8239,28 +8261,10 @@ MonoBehaviour:
       frame_rate: 0
       frame_count: 0
       pwm: 0000000000000000000000000000000000000000000000000000000000000000
---- !u!114 &3118167293236257557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2780308596017674093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03193bb0c53334544bd0af2bdd029b6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityMavrosRuntime::UnityMavros.AP_FlightController.PhysicsPropertiesSetter
-  _targetBody: {fileID: 1175180954208966904}
-  _mass: 14.7
-  _linearDamping: 0.5
-  _angularDamping: 0.5
-  _centerOfMass: {x: 0, y: 0, z: 0.015}
-  _inertiaTensor: {x: 0.65, y: 0.6, z: 0.4}
-  _inertiaTensorRotation: {x: 0, y: 0, z: 0, w: 1}
-  _showCom: 1
-  _showInertiaEllipsoid: 0
-  _ellipsoidScale: 0.2
+  _targetVelocityX: 0
+  _targetVelocityY: 0
+  _targetVelocityZ: 0
+  _targetYawRate: 0
 --- !u!114 &4552555446460806382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27319,22 +27323,22 @@ PrefabInstance:
     - target: {fileID: 1291263212418806651, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9919391
+      value: 0.9051342
       objectReference: {fileID: 0}
     - target: {fileID: 1291263212418806651, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.11352276
+      value: -0.103588335
       objectReference: {fileID: 0}
     - target: {fileID: 1291263212418806651, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.05593287
+      value: 0.4096385
       objectReference: {fileID: 0}
     - target: {fileID: 1291263212418806651, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0064012534
+      value: 0.04688119
       objectReference: {fileID: 0}
     - target: {fileID: 2030136134957147974, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
@@ -27389,22 +27393,22 @@ PrefabInstance:
     - target: {fileID: 3692168605730218597, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9959061
+      value: 0.90875405
       objectReference: {fileID: 0}
     - target: {fileID: 3692168605730218597, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.070722386
+      value: -0.06453342
       objectReference: {fileID: 0}
     - target: {fileID: 3692168605730218597, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.056156557
+      value: 0.41127676
       objectReference: {fileID: 0}
     - target: {fileID: 3692168605730218597, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0039878516
+      value: 0.029206024
       objectReference: {fileID: 0}
     - target: {fileID: 3788882881599474722, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
@@ -27439,17 +27443,17 @@ PrefabInstance:
     - target: {fileID: 5527064015543651467, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.26192996
+      value: 1.224843
       objectReference: {fileID: 0}
     - target: {fileID: 5527064015543651467, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.13030267
+      value: -0.1303026
       objectReference: {fileID: 0}
     - target: {fileID: 5527064015543651467, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.7500105
+      value: 1.2470925
       objectReference: {fileID: 0}
     - target: {fileID: 5527064015543651467, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
@@ -27539,22 +27543,22 @@ PrefabInstance:
     - target: {fileID: 6934612898544253463, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99414927
+      value: 0.907151
       objectReference: {fileID: 0}
     - target: {fileID: 6934612898544253463, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.092183664
+      value: -0.084116615
       objectReference: {fileID: 0}
     - target: {fileID: 6934612898544253463, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.056057494
+      value: 0.41055125
       objectReference: {fileID: 0}
     - target: {fileID: 6934612898544253463, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0051979977
+      value: 0.038068835
       objectReference: {fileID: 0}
     - target: {fileID: 7038401580175735903, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
@@ -27594,22 +27598,22 @@ PrefabInstance:
     - target: {fileID: 7472145225900215552, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99357665
+      value: 0.9066285
       objectReference: {fileID: 0}
     - target: {fileID: 7472145225900215552, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.09816334
+      value: -0.089572996
       objectReference: {fileID: 0}
     - target: {fileID: 7472145225900215552, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.05602518
+      value: 0.41031474
       objectReference: {fileID: 0}
     - target: {fileID: 7472145225900215552, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0055351728
+      value: 0.040538236
       objectReference: {fileID: 0}
     - target: {fileID: 7523340875789236191, guid: ddbae3aff981c2146a1b741e92a244f5,
         type: 3}

@@ -109,8 +109,8 @@ Material:
     - _ZTestDepthEqualForOpaque: 4
     - _ZTestGBuffer: 3
     m_Colors:
-    - _Crest_Absorption: {r: 0.220668, g: 0.11969344, b: 0.04278334, a: 1}
-    - _Crest_AbsorptionColor: {r: 0.37647057, g: 0.58866805, b: 0.827451, a: 0.03529412}
+    - _Crest_Absorption: {r: 0.2311615, g: 0.035090297, b: -0, a: 1}
+    - _Crest_AbsorptionColor: {r: 0, g: 0.24705882, b: 1, a: 0.003921569}
     - _Crest_Scattering: {r: 0.035294108, g: 0.19962804, b: 0.30588236, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
