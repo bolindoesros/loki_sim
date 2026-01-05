@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2225901364685168953}
   - component: {fileID: 7427828089455113300}
+  - component: {fileID: 1766064769819705230}
   m_Layer: 13
   m_Name: StereoCamera
   m_TagString: Untagged
@@ -47,6 +48,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentNamespace: stereo_camera
+--- !u!114 &1766064769819705230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955125009457306760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a6512c6d49c2244a1a77e382c678b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnitySensorsROSRuntime::UnitySensors.Sensor.TF.TFLink
+  _frequency: 1
+  _frame_id: stereo_link
+  _children:
+  - {fileID: 6432075521527594586}
+  - {fileID: 6486738515869573357}
 --- !u!1 &8728283564122504949
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,10 +132,57 @@ MonoBehaviour:
   _frequency: 30
   _topicName: right/camera_info
   _serializer:
+    _msg:
+      height: 0
+      width: 0
+      distortion_model: 
+      d: []
+      k:
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      r:
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      p:
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      binning_x: 0
+      binning_y: 0
+      roi:
+        x_offset: 0
+        y_offset: 0
+        height: 0
+        width: 0
+        do_rectify: 0
     _source: {fileID: 8728283564122504959}
     _header:
       _source: {fileID: 8728283564122504959}
-      _frame_id: auv/stereo_right_link
+      _frame_id: stereo_right_link
+    _horizontalCameraOffset: 0.12
 --- !u!114 &368135763838353420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,11 +198,14 @@ MonoBehaviour:
   _frequency: 30
   _topicName: right/rgb/compressed
   _serializer:
+    _msg:
+      format: 
+      data: 
     _source: {fileID: 8728283564122504959}
     _sourceTexture: 0
     _header:
       _source: {fileID: 8728283564122504959}
-      _frame_id: auv/stereo_right_link
+      _frame_id: stereo_right_link
     quality: 75
 --- !u!114 &6486738515869573357
 MonoBehaviour:
@@ -151,9 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a6512c6d49c2244a1a77e382c678b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _frequency: 10
+  _frequency: 1
   _frame_id: stereo_right_link
-  _isTFRoot: 0
   _children: []
 --- !u!20 &1292709185712579477
 Camera:
@@ -412,10 +479,57 @@ MonoBehaviour:
   _frequency: 30
   _topicName: left/camera_info
   _serializer:
+    _msg:
+      height: 0
+      width: 0
+      distortion_model: 
+      d: []
+      k:
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      r:
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      p:
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      binning_x: 0
+      binning_y: 0
+      roi:
+        x_offset: 0
+        y_offset: 0
+        height: 0
+        width: 0
+        do_rectify: 0
     _source: {fileID: 8820233333947883592}
     _header:
       _source: {fileID: 8820233333947883592}
-      _frame_id: auv/stereo_left_link
+      _frame_id: stereo_left_link
+    _horizontalCameraOffset: 0
 --- !u!114 &458581366331727547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,11 +545,14 @@ MonoBehaviour:
   _frequency: 30
   _topicName: left/rgb/compressed
   _serializer:
+    _msg:
+      format: 
+      data: 
     _source: {fileID: 8820233333947883592}
     _sourceTexture: 0
     _header:
       _source: {fileID: 8820233333947883592}
-      _frame_id: auv/stereo_left_link
+      _frame_id: stereo_left_link
     quality: 75
 --- !u!114 &6432075521527594586
 MonoBehaviour:
@@ -449,9 +566,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a6512c6d49c2244a1a77e382c678b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _frequency: 10
+  _frequency: 1
   _frame_id: stereo_left_link
-  _isTFRoot: 0
   _children: []
 --- !u!20 &6275292051922083269
 Camera:

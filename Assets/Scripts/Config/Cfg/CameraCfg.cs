@@ -1,11 +1,12 @@
 using Newtonsoft.Json;
 
+[System.Serializable]
 public class CameraCfg : SensorCfg
 {
-    public Pose origin = new ();
     [JsonProperty("camera-settings")] public CameraSettings cameraSettings = new ();
 }
 
+[System.Serializable]
 public class CameraSettings
 {
     public int width = 640;

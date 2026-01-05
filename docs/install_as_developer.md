@@ -99,6 +99,8 @@ Proceed to open any of the scenes available in [Assets/Scenes](../Assets/Scenes)
 
 ![](images/sauvc_scene.png)
 
+> Note: You may need to enable Unity communication through the firewall manually to enable Ardupilot JSON integration. For Windows, search "Allow an app through Windows Firewall" in the start menu, then find all Unity entries and ensure that both "Private" and "Public" checkboxes are ticked.
+
 ### Recommended development workflow
 
 On Windows, many people often use Visual Studio as their IDE for Unity development. If you use this, when you install Visual Studio, please ensure that you have selected the "Game development with Unity" workload. Another option that works on all platforms is Visual Studio Code (VSCode). Please install the C# and Unity extension for VSCode to enable C# support.

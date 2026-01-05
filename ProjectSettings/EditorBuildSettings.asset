@@ -14,5 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Sauvc.unity
     guid: 320c241d31c993f4597905e7297adb63
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f,
+      type: 2}
   m_UseUCBPForAssetBundles: 0

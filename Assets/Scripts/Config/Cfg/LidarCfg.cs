@@ -1,11 +1,12 @@
 using Newtonsoft.Json;
 
+[System.Serializable]
 public class LidarCfg : SensorCfg
 {
-    public Pose origin = new ();
     [JsonProperty("lidar-settings")] public LidarSettings lidarSettings = new VLP16LidarSettings();
 }
 
+[System.Serializable]
 public class LidarSettings
 {
     [JsonProperty("points-num-per-scan")] public int pointsNumPerScan;

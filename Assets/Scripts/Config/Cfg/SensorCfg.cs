@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using UnityEngine;
 
+[System.Serializable]
 public class SensorCfg
 {
     public string name;
@@ -10,8 +11,10 @@ public class SensorCfg
     public float frequency;
     [JsonProperty("ros-namespace")] public string rosNamespace;
     [JsonProperty("ros-topic")] public string rosTopic;
+    public Pose pose = new();
 }
 
+[System.Serializable]
 public class Pose
 {
     public Vector3 position = Vector3.zero;

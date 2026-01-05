@@ -2,10 +2,13 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.UnityConverters.Math;
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
+using UnitySensors.ROS.Publisher.Tf2;
+using UnitySensors.ROS.Utils.Namespacing;
+using UnitySensors.Sensor.TF;
 
 public class BaseFirstContractResolver : DefaultContractResolver
 {
@@ -33,11 +36,69 @@ public class BaseFirstContractResolver : DefaultContractResolver
 }
 public class RobotCfgLoader : MonoBehaviour
 {
+    public RobotCfg robotCfg;
+
     SensorCfgLoader sensorCfgLoader;
-    string filePath = "robot.json";
-    RobotCfg robotCfg;
 
     void Awake()
+    {
+        if (!enabled)
+            return;
+
+        SetJsonDefaultSettings();
+
+        string filePath = SavePathUtility.GetSavePathForTransform(transform);
+        if (File.Exists(filePath))
+        {
+            Debug.Log("File exists at " + filePath + ", loading robot config.");
+            string json = File.ReadAllText(filePath);
+            robotCfg = ScriptableObject.CreateInstance<RobotCfg>();
+            JsonConvert.PopulateObject(json, robotCfg);
+        }
+        else
+        {
+            Debug.LogWarning($"SensorLoader: Config file not found at {filePath}. Using provided RobotCfg instead.");
+            string jsonString = JsonConvert.SerializeObject(robotCfg);
+            File.WriteAllText(filePath, jsonString);
+            Debug.Log("Created default robot config at " + filePath);
+        }
+
+        if (robotCfg == null || robotCfg.sensors == null)
+        {
+            Debug.LogError("SensorLoader: Failed to load sensors from JSON."); 
+        }
+
+        if (TryGetComponent<NamespaceManager>(out var nsManager))
+        {
+            nsManager.CurrentNamespace = robotCfg.rosNamespace;
+        }
+        else Debug.LogWarning("RobotCfgLoader: No NamespaceManager found on robot to set namespace.");
+
+        if (TryGetComponent<TFLink>(out var tfLink))
+        {
+            tfLink.FrameId = robotCfg.baseLinkId;
+        }
+        else Debug.LogWarning("RobotCfgLoader: No TFLink found on robot to set base link ID.");
+
+        if (TryGetComponent<TFMessageMsgPublisher>(out var tfPublisher))
+        {
+            tfPublisher.enabled = robotCfg.tfPublisher.enabled;
+            tfPublisher.Frequency = robotCfg.tfPublisher.frequency;
+            tfPublisher.TopicName = robotCfg.tfPublisher.rosTopic;
+            tfPublisher.Serializer.recurseFindChildLinks = robotCfg.tfPublisher.publishChildLinks;
+        }
+        else Debug.LogWarning("RobotCfgLoader: No TFMessageMsgPublisher found on robot to set TF publisher config.");
+
+        sensorCfgLoader = GetComponentInChildren<SensorCfgLoader>();
+        if (sensorCfgLoader != null)
+        {
+            sensorCfgLoader.LoadSensorConfigs(robotCfg.sensors);
+            Debug.Log($"RobotCfgLoader: Loaded {robotCfg.sensors.Count} sensors from config.");
+        }
+        else Debug.LogWarning("RobotCfgLoader: No SensorCfgLoader found on robot to load sensor configs.");
+    }
+
+    public void SetJsonDefaultSettings()
     {
         JsonConvert.DefaultSettings = () => new JsonSerializerSettings
         {
@@ -49,78 +110,30 @@ public class RobotCfgLoader : MonoBehaviour
             Formatting = Formatting.Indented,
             ContractResolver = new BaseFirstContractResolver(),
             DefaultValueHandling = DefaultValueHandling.Populate,
-#if UNITY_EDITOR
-            NullValueHandling = NullValueHandling.Include,
-#else
-            NullValueHandling = NullValueHandling.Ignore,
-#endif
+            NullValueHandling = NullValueHandling.Ignore
         };
+    }
+}
 
-        filePath = Path.Combine(Application.persistentDataPath, filePath);
-        if (File.Exists(filePath))
+public static class SavePathUtility
+{
+    public static string GetSavePath(string fileName)
+    {
+        // Path: [Project Root]/SimSettings/
+        string directoryPath = Path.Combine(Directory.GetParent(Application.dataPath).FullName, "SimSettings");
+
+        // Ensure the directory exists so you don't get an IO error
+        if (!Directory.Exists(directoryPath))
         {
-            string json = File.ReadAllText(filePath);
-            robotCfg = JsonConvert.DeserializeObject<RobotCfg>(json);
-        } else
-        {
-            Debug.LogWarning($"SensorLoader: Config file not found at {filePath}");
-            robotCfg = CreateSampleConfig();
+            Directory.CreateDirectory(directoryPath);
         }
 
-
-        //RobotCfg robotCfg = JsonConvert.DeserializeObject<RobotCfg>(json, jsonSettings);
-        if (robotCfg == null || robotCfg.sensors == null)
-        {
-            Debug.LogWarning("SensorLoader: Failed to load sensors from JSON.");
-            robotCfg = CreateSampleConfig();
-        }
-
-        Debug.Log($"RobotCfgLoader: Loaded {robotCfg.sensors.Count} sensors from config.");
-        sensorCfgLoader = GetComponentInChildren<SensorCfgLoader>();
-        if (sensorCfgLoader != null)
-        {
-            sensorCfgLoader.LoadSensorConfigs(robotCfg.sensors);
-        }
+        return Path.Combine(directoryPath, fileName);
     }
 
-    RobotCfg CreateSampleConfig()
+    public static string GetSavePathForTransform(Transform transform)
     {
-        RobotCfg defaultCfg = new ()
-        {
-            sensors = new List<SensorCfg>
-            {
-                new CameraCfg
-                {
-                    name = "FrontCamera",
-                    type = "camera",
-                    enabled = true,
-                    frameId = "front_camera_link",
-                    frequency = 30.0f,
-                    rosNamespace = "front_camera",
-                    rosTopic = "image_raw",
-                    //origin = new Pose
-                    //{
-                    //    position = new Vector3(0.2f, 0.0f, 0.1f),
-                    //    rotation = new Vector3(0.0f, 0.0f, 0.0f)
-                    //}
-                },
-                new ImuCfg
-                {
-                    name = "MainIMU",
-                    type = "imu",
-                    enabled = true,
-                    frameId = "imu_link",
-                    frequency = 50.0f,
-                    rosNamespace = "mavros",
-                    rosTopic = "imu/data"
-                }
-            }
-        };
-
-        string jsonString = JsonConvert.SerializeObject(defaultCfg);
-        File.WriteAllText(filePath, jsonString);
-        Debug.Log("Created sample robot config at " + filePath);
-
-        return defaultCfg;
+        string fileName = $"{transform.name.ToLower().Replace(" ", "_")}.json";
+        return GetSavePath(fileName);
     }
 }

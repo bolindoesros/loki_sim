@@ -6,6 +6,7 @@ public class SensorCfgConverter : CustomPolymorphicConverter<SensorCfg>
         {
             "imu" => new ImuCfg(),
             "camera" => new CameraCfg(),
+            "dvl" => new DvlCfg(),
             "lidar" => new LidarCfg(),
             _ => new SensorCfg()
         };

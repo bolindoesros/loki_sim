@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Cinemachine;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class FreeLookControl : MonoBehaviour
 {
@@ -24,6 +23,9 @@ public class FreeLookControl : MonoBehaviour
 
     void Update()
     {
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            return;
+
         if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
         {
             // Enable camera rotation while mouse button held

@@ -34,8 +34,7 @@ public class RandomTeleporter : MonoBehaviour
     {
         GameObject vehicleObj = GameObject.Find(vehicleName);
         Transform transformToTeleport = vehicleObj.transform;
-        Rigidbody[] RBparts = transformToTeleport.gameObject.GetComponentsInChildren<Rigidbody>();
-
+        
         var unityPosi = new Vector3(
                         expectedLocation.position.x + horizontalRange.RandomValue(),
                         expectedLocation.position.y,
@@ -47,10 +46,9 @@ public class RandomTeleporter : MonoBehaviour
 
         transformToTeleport.SetPositionAndRotation(unityPosi, unityOri);
 
-        foreach (var rb in RBparts)
+        if (transformToTeleport.TryGetComponent<ArticulationBody>(out var artBody))
         {
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            artBody.TeleportRoot(unityPosi, unityOri);
         }
     }
 }
