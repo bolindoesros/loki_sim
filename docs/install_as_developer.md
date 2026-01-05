@@ -83,7 +83,13 @@ The `--recurse-submodules` flag will automatically clone all the submodules in t
 - ROS-TCP-Connector
 - UnitySensors
 
-> Note: You may run into some warnings regarding Git LFS when cloning `UnitySensors` but you can safely ignore them.
+For future updates of submodules, you will need to recursively update the modules. To make life easy, you can set an alias (aka shortcut):
+
+```
+git config --local alias.pullall '!git pull && git submodule update --remote --recursive'
+```
+
+then run `git pullall`.
 
 ### Opening the project in Unity
 
@@ -91,7 +97,7 @@ After cloning the repository with all its submodules, please open the Unity Hub 
 
 ![](images/opening_the_project.png)
 
-UnityHub will prompt you to install `Editor version 6000.2.8f1` (the latest Unity6 version at the time of writing). Please accept and install this version as it is a Long-Term Support (LTS) version. If you already have this version installed, you can skip this step.
+UnityHub will prompt you to install `Editor version 6000.3.2f1` (the latest Unity6 version at the time of writing). Please accept and install this version as it is a Long-Term Support (LTS) version. If you already have this version installed, you can skip this step.
 
 Upon opening the project for the first time, Unity will take some time to import all the assets and compile the scripts. Please be patient as this may take a few minutes. A lot of warnings may appear in the console, but you can safely press the "Clear" button to clear them all.
 
