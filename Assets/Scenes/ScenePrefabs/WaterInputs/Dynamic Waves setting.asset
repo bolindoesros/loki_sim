@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Dynamic Waves setting
   m_EditorClassIdentifier: WaveHarmonic.Crest::WaveHarmonic.Crest.DynamicWavesLodSettings
   _Version: 0
-  _Damping: 0.1
+  _Damping: 1
   _CourantNumber: 0.7
-  _HorizontalDisplace: 3
+  _HorizontalDisplace: 4.0609136
   _DisplaceClamp: 0.3
-  _GravityMultiplier: 1.5
+  _GravityMultiplier: 3

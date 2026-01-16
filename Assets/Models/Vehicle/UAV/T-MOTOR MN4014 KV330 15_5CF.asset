@@ -1,0 +1,201 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cf8b5e8ab0a744aa8f0ecb7123f882, type: 3}
+  m_Name: T-MOTOR MN4014 KV330 15_5CF
+  m_EditorClassIdentifier: MDS_Runtime::MDS.AP_FlightController.PropellerDataSO
+  Mass: 0.021
+  InertiaTensor: {x: 0.0001274, y: 0.0003108, z: 0.0001573}
+  AngularDamping: 0.075
+  JointFriction: 0.075
+  IdlePwm: 1000
+  MaxPwmRange: 1000
+  PropellerDataPoints:
+  - Throttle: -1
+    ThrustKg: 0
+    TorqueNm: 0
+  - Throttle: 0
+    ThrustKg: 0
+    TorqueNm: 0
+  - Throttle: 0.01
+    ThrustKg: 0
+    TorqueNm: 0
+  - Throttle: 0.5
+    ThrustKg: 0.83
+    TorqueNm: 0.196
+  - Throttle: 0.65
+    ThrustKg: 1.15
+    TorqueNm: 0.272
+  - Throttle: 0.75
+    ThrustKg: 1.43
+    TorqueNm: 0.324
+  - Throttle: 0.85
+    ThrustKg: 1.69
+    TorqueNm: 0.382
+  - Throttle: 1
+    ThrustKg: 1.92
+    TorqueNm: 0.42
+  ThrustCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 35
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 35
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.505
+      value: 0
+      inSlope: 1.6938775
+      outSlope: 1.6938775
+      tangentMode: 35
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.75
+      value: 0.83
+      inSlope: 3.8272111
+      outSlope: 3.8272111
+      tangentMode: 35
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.825
+      value: 1.15
+      inSlope: 4.9333324
+      outSlope: 4.9333324
+      tangentMode: 35
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.875
+      value: 1.43
+      inSlope: 5.3999996
+      outSlope: 5.3999996
+      tangentMode: 35
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.925
+      value: 1.69
+      inSlope: 4.133333
+      outSlope: 4.133333
+      tangentMode: 35
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1.92
+      inSlope: 3.066666
+      outSlope: 3.066666
+      tangentMode: 35
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  TorqueCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 35
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 35
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.505
+      value: 0
+      inSlope: 0.39999998
+      outSlope: 0.39999998
+      tangentMode: 35
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.75
+      value: 0.196
+      inSlope: 0.9066669
+      outSlope: 0.9066669
+      tangentMode: 35
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.825
+      value: 0.272
+      inSlope: 1.0266666
+      outSlope: 1.0266666
+      tangentMode: 35
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.875
+      value: 0.324
+      inSlope: 1.0999997
+      outSlope: 1.0999997
+      tangentMode: 35
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.925
+      value: 0.382
+      inSlope: 0.83333313
+      outSlope: 0.83333313
+      tangentMode: 35
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.42
+      inSlope: 0.5066666
+      outSlope: 0.5066666
+      tangentMode: 35
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

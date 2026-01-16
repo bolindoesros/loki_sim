@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnitySensors.Sensor.TF;
 
 [System.Serializable]
 public struct RandomGenerator
@@ -20,7 +21,7 @@ public struct RandomGenerator
 
 public class RandomTeleporter : MonoBehaviour
 {
-    [Tooltip("The object to teleport around. Can handle Arti. Bodies too.")]
+    [Tooltip("The object to teleport around. Only handle Articulation Body.")]
     [SerializeField] string vehicleName;
     [Tooltip("Expected location to teleport in.")]
     [SerializeField] Transform expectedLocation;
@@ -50,5 +51,14 @@ public class RandomTeleporter : MonoBehaviour
         {
             artBody.TeleportRoot(unityPosi, unityOri);
         }
+
+        if (transformToTeleport.TryGetComponent<TFLink>(out var tfLink))
+        {
+            if (tfLink.IsBaseLink())
+                tfLink.ResetOdomTransform();
+            else 
+                Debug.LogWarning($"TFLink on {vehicleName} is not a base_link, are you sure?");
+        }
+        else Debug.LogWarning($"No TFLink found on {vehicleName}, are you sure?");
     }
 }

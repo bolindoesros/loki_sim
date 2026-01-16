@@ -239,7 +239,7 @@ Transform:
   m_GameObject: {fileID: 259603340251005664}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.21900019, y: 0.1375, z: 0.064599976}
+  m_LocalPosition: {x: -0.21900019, y: 0.18, z: 0.064599976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: WaveHarmonic.Crest::WaveHarmonic.Crest.SphereWaterInteraction
   _Version: 0
-  _Radius: 0.05
+  _Radius: 0.1
   _Weight: 1.5
   _WeightVerticalMultiplier: 0.5
   _InnerSphereMultiplier: 1.55
@@ -1132,7 +1132,9 @@ MonoBehaviour:
   _buoyantForceCoefficient: 1
   _fluidDensity: 1000
   _pressureDragCoefficient: 1
+  _suctionDragCoefficient: 0.2
   _frictionDragCoefficient: 0.003
+  _accelerationDragCoefficient: 0.033333335
   _useOcclusion: 1
   _vehicleLayer:
     serializedVersion: 2
@@ -1299,7 +1301,9 @@ MonoBehaviour:
   _buoyantForceCoefficient: 0.1
   _fluidDensity: 1000
   _pressureDragCoefficient: 1
+  _suctionDragCoefficient: 0.2
   _frictionDragCoefficient: 0.003
+  _accelerationDragCoefficient: 0.033333335
   _useOcclusion: 1
   _vehicleLayer:
     serializedVersion: 2
@@ -1382,7 +1386,7 @@ Transform:
   m_GameObject: {fileID: 934012638889132446}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.22099999, y: 0.1375, z: 0.21460006}
+  m_LocalPosition: {x: 0.22099999, y: 0.18, z: 0.21460006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1401,7 +1405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: WaveHarmonic.Crest::WaveHarmonic.Crest.SphereWaterInteraction
   _Version: 0
-  _Radius: 0.05
+  _Radius: 0.1
   _Weight: 1.5
   _WeightVerticalMultiplier: 0.5
   _InnerSphereMultiplier: 1.55
@@ -4727,7 +4731,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 8393
+  m_VersionIndex: 8507
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4766,7 +4770,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306092217300914961}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4834,7 +4838,9 @@ MonoBehaviour:
   _buoyantForceCoefficient: 0
   _fluidDensity: 1000
   _pressureDragCoefficient: 1
+  _suctionDragCoefficient: 0.2
   _frictionDragCoefficient: 0.003
+  _accelerationDragCoefficient: 0.033333335
   _useOcclusion: 1
   _vehicleLayer:
     serializedVersion: 2
@@ -5576,7 +5582,9 @@ MonoBehaviour:
   _buoyantForceCoefficient: 1
   _fluidDensity: 1000
   _pressureDragCoefficient: 1
+  _suctionDragCoefficient: 0.2
   _frictionDragCoefficient: 1
+  _accelerationDragCoefficient: 1
   _useOcclusion: 1
   _vehicleLayer:
     serializedVersion: 2
@@ -6058,7 +6066,9 @@ MonoBehaviour:
   _buoyantForceCoefficient: 1
   _fluidDensity: 1000
   _pressureDragCoefficient: 1
+  _suctionDragCoefficient: 0.2
   _frictionDragCoefficient: 1
+  _accelerationDragCoefficient: 1
   _useOcclusion: 1
   _vehicleLayer:
     serializedVersion: 2
@@ -6877,7 +6887,9 @@ MonoBehaviour:
   _buoyantForceCoefficient: 1
   _fluidDensity: 1000
   _pressureDragCoefficient: 1
+  _suctionDragCoefficient: 0.2
   _frictionDragCoefficient: 1
+  _accelerationDragCoefficient: 1
   _useOcclusion: 1
   _vehicleLayer:
     serializedVersion: 2
@@ -7447,7 +7459,9 @@ MonoBehaviour:
   _buoyantForceCoefficient: 1
   _fluidDensity: 1000
   _pressureDragCoefficient: 1
+  _suctionDragCoefficient: 0.2
   _frictionDragCoefficient: 1
+  _accelerationDragCoefficient: 1
   _useOcclusion: 1
   _vehicleLayer:
     serializedVersion: 2
@@ -7926,8 +7940,8 @@ ArticulationBody:
     target: 0
     targetVelocity: 0
     driveType: 0
-  m_LinearDamping: 0.5
-  m_AngularDamping: 0.5
+  m_LinearDamping: 0.05
+  m_AngularDamping: 0.05
   m_JointFriction: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0.015}
   m_InertiaTensor: {x: 0.65, y: 0.6, z: 0.4}
@@ -7956,8 +7970,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityMavrosRuntime::UnityMavros.AP_FlightController.PhysicsPropertiesSetter
   _mass: 14.7
-  _linearDamping: 0.5
-  _angularDamping: 0.5
+  _linearDamping: 0.05
+  _angularDamping: 0.05
   _centerOfMass: {x: 0, y: 0, z: 0.015}
   _inertiaTensor: {x: 0.65, y: 0.6, z: 0.4}
   _inertiaTensorRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -7990,9 +8004,10 @@ MonoBehaviour:
     _linearVelocity: {x: 0, y: 0, z: 0}
     _angularVelocity: {x: 0, y: 0, z: 0}
     _linearAccelerationWithGravity: {x: 0, y: 0, z: 0}
-  _useSitl: 1
-  _sitlFreq: 800
-  _SITLConnection:
+  useSitl: 1
+  sitlFreq: 800
+  sitlPort: 9002
+  _sitlConnection:
     _dataFromSitl:
       magic: 0
       frame_rate: 0
@@ -8540,7 +8555,7 @@ Transform:
   m_GameObject: {fileID: 3290954180551234948}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.22100034, y: 0.1375, z: -0.085400015}
+  m_LocalPosition: {x: 0.22100034, y: 0.18, z: -0.085400015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8559,7 +8574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: WaveHarmonic.Crest::WaveHarmonic.Crest.SphereWaterInteraction
   _Version: 0
-  _Radius: 0.05
+  _Radius: 0.1
   _Weight: 1.5
   _WeightVerticalMultiplier: 0.5
   _InnerSphereMultiplier: 1.55
@@ -9909,7 +9924,9 @@ MonoBehaviour:
   _buoyantForceCoefficient: 1
   _fluidDensity: 1000
   _pressureDragCoefficient: 1
+  _suctionDragCoefficient: 0.2
   _frictionDragCoefficient: 1
+  _accelerationDragCoefficient: 1
   _useOcclusion: 1
   _vehicleLayer:
     serializedVersion: 2
@@ -11008,7 +11025,9 @@ MonoBehaviour:
   _buoyantForceCoefficient: 1.3
   _fluidDensity: 1000
   _pressureDragCoefficient: 1
+  _suctionDragCoefficient: 0.2
   _frictionDragCoefficient: 0.003
+  _accelerationDragCoefficient: 0.033333335
   _useOcclusion: 1
   _vehicleLayer:
     serializedVersion: 2
@@ -11271,7 +11290,7 @@ Transform:
   m_GameObject: {fileID: 4417156641382710438}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.21900013, y: 0.1375, z: 0.21460006}
+  m_LocalPosition: {x: -0.21900013, y: 0.18, z: 0.21460006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11290,7 +11309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: WaveHarmonic.Crest::WaveHarmonic.Crest.SphereWaterInteraction
   _Version: 0
-  _Radius: 0.05
+  _Radius: 0.1
   _Weight: 1.5
   _WeightVerticalMultiplier: 0.5
   _InnerSphereMultiplier: 1.55
@@ -11314,6 +11333,7 @@ GameObject:
   - component: {fileID: 8717633841294663342}
   - component: {fileID: 7681369955466262905}
   - component: {fileID: 5289427292503717489}
+  - component: {fileID: 8988420296440424784}
   m_Layer: 0
   m_Name: Sensors
   m_TagString: Untagged
@@ -11373,6 +11393,21 @@ MonoBehaviour:
   sensorControlPrefab: {fileID: 4636754501537172010, guid: 609922917391afe45980c2bf587c27bf,
     type: 3}
   sensorUIEnableButtonName: Toggle Sensor UI
+--- !u!114 &8988420296440424784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4466208656155040793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a6512c6d49c2244a1a77e382c678b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnitySensorsROSRuntime::UnitySensors.Sensor.TF.TFLink
+  _frequency: 1
+  _frame_id: sensor_link
+  _children: []
 --- !u!1 &4541787293994333766
 GameObject:
   m_ObjectHideFlags: 0
@@ -12270,7 +12305,7 @@ Transform:
   m_GameObject: {fileID: 5366386741635989308}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.001999941, y: 0.1375, z: -0.14740007}
+  m_LocalPosition: {x: 0.001999941, y: 0.18, z: -0.14740007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12289,7 +12324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: WaveHarmonic.Crest::WaveHarmonic.Crest.SphereWaterInteraction
   _Version: 0
-  _Radius: 0.05
+  _Radius: 0.1
   _Weight: 1.5
   _WeightVerticalMultiplier: 0.5
   _InnerSphereMultiplier: 1.55
@@ -14869,7 +14904,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 8077
+  m_VersionIndex: 8191
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -14908,7 +14943,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5671200028055183995}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -14976,7 +15011,9 @@ MonoBehaviour:
   _buoyantForceCoefficient: 0.48
   _fluidDensity: 1000
   _pressureDragCoefficient: 1
+  _suctionDragCoefficient: 0.2
   _frictionDragCoefficient: 0.003
+  _accelerationDragCoefficient: 0.033333335
   _useOcclusion: 1
   _vehicleLayer:
     serializedVersion: 2
@@ -17757,7 +17794,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6079
+  m_VersionIndex: 6193
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -17796,7 +17833,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5681751753134495205}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -17864,7 +17901,9 @@ MonoBehaviour:
   _buoyantForceCoefficient: 0.25
   _fluidDensity: 1000
   _pressureDragCoefficient: 1
+  _suctionDragCoefficient: 0.2
   _frictionDragCoefficient: 0.003
+  _accelerationDragCoefficient: 0.033333335
   _useOcclusion: 1
   _vehicleLayer:
     serializedVersion: 2
@@ -18431,7 +18470,9 @@ MonoBehaviour:
   _buoyantForceCoefficient: 1
   _fluidDensity: 1000
   _pressureDragCoefficient: 1
+  _suctionDragCoefficient: 0.2
   _frictionDragCoefficient: 1
+  _accelerationDragCoefficient: 1
   _useOcclusion: 1
   _vehicleLayer:
     serializedVersion: 2
@@ -19022,7 +19063,7 @@ Transform:
   m_GameObject: {fileID: 6378872509957152482}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.0019997994, y: 0.1375, z: 0.25260007}
+  m_LocalPosition: {x: 0.0019997994, y: 0.18, z: 0.25260007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19041,7 +19082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: WaveHarmonic.Crest::WaveHarmonic.Crest.SphereWaterInteraction
   _Version: 0
-  _Radius: 0.05
+  _Radius: 0.1
   _Weight: 1.5
   _WeightVerticalMultiplier: 0.5
   _InnerSphereMultiplier: 1.55
@@ -22611,7 +22652,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 9668
+  m_VersionIndex: 9782
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -22650,7 +22691,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7189585687188517386}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -22718,7 +22759,9 @@ MonoBehaviour:
   _buoyantForceCoefficient: 0
   _fluidDensity: 1000
   _pressureDragCoefficient: 1
+  _suctionDragCoefficient: 0.2
   _frictionDragCoefficient: 0.003
+  _accelerationDragCoefficient: 0.033333335
   _useOcclusion: 1
   _vehicleLayer:
     serializedVersion: 2
@@ -23016,7 +23059,9 @@ MonoBehaviour:
   _buoyantForceCoefficient: 0
   _fluidDensity: 1000
   _pressureDragCoefficient: 1
+  _suctionDragCoefficient: 0.2
   _frictionDragCoefficient: 0.003
+  _accelerationDragCoefficient: 0.033333335
   _useOcclusion: 1
   _vehicleLayer:
     serializedVersion: 2
@@ -23497,7 +23542,7 @@ Transform:
   m_GameObject: {fileID: 7740260202199494403}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.21900025, y: 0.1375, z: -0.08540009}
+  m_LocalPosition: {x: -0.21900025, y: 0.18, z: -0.08540009}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23516,7 +23561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: WaveHarmonic.Crest::WaveHarmonic.Crest.SphereWaterInteraction
   _Version: 0
-  _Radius: 0.05
+  _Radius: 0.1
   _Weight: 1.5
   _WeightVerticalMultiplier: 0.5
   _InnerSphereMultiplier: 1.55
@@ -27060,7 +27105,7 @@ PrefabInstance:
     - target: {fileID: 8347420801520522871, guid: f875cfd7a1a0fe8479b8e186f0770af9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9007485434095794208, guid: f875cfd7a1a0fe8479b8e186f0770af9,
         type: 3}
