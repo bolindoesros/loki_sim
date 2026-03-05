@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 public class ImuCfg : SensorCfg
 {
     [JsonProperty("imu-settings")] public ImuSettings imuSettings = new ();
+
+    public ImuCfg() { type = "imu"; }
 }
 
 [System.Serializable]

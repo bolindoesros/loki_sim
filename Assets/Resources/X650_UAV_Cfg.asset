@@ -10,36 +10,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f98242ad4bb68b4d9fcc6d970bd1689, type: 3}
-  m_Name: DefaultRobotCfg
+  m_Name: X650_UAV_Cfg
   m_EditorClassIdentifier: Assembly-CSharp::RobotCfg
-  rosNamespace: robot
+  rosNamespace: /x650_drone
   baseLinkId: base_link
   tfPublisher:
     enabled: 1
-    frequency: 10
+    frequency: 20
     rosTopic: tf
     publishChildLinks: 1
+  controllerCfg:
+    rid: 7991397939823247462
   sensors:
-  - rid: 8353887141511561428
-  - rid: 8353887141511561429
-  - rid: 8353887141511561430
-  - rid: 8353887141511561431
+  - rid: 7991397939823247463
+  - rid: 7991397939823247464
+  - rid: 7991397939823247465
+  waterDragCfg:
+    rid: -2
+  propellerDragCfg:
+    rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 8353887141511561428
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 7991397939823247462
+      type: {class: ArdupilotControllerCfg, ns: , asm: Assembly-CSharp}
+      data:
+        type: ardupilot
+        apSitlSettings:
+          sitlFreq: 800
+          sitlPort: 9012
+    - rid: 7991397939823247463
       type: {class: ImuCfg, ns: , asm: Assembly-CSharp}
       data:
         name: Imu
         type: imu
-        enabled: 1
+        enabled: 0
         frameId: imu_link
         frequency: 100
         rosNamespace: mavros
         rosTopic: imu/data
         pose:
-          position: {x: -0.252307, y: 0.09248793, z: -0.08485246}
-          rotation: {x: 0, y: -0, z: -0.000010245284}
+          position: {x: 0, y: -0, z: 0}
+          rotation: {x: 0, y: 0, z: 0}
         imuSettings:
           withGravity: 1
           linearCovariance:
@@ -72,61 +86,34 @@ MonoBehaviour:
           - 0
           - 0
           - 0.00122
-    - rid: 8353887141511561429
-      type: {class: DvlCfg, ns: , asm: Assembly-CSharp}
+    - rid: 7991397939823247464
+      type: {class: GnssCfg, ns: , asm: Assembly-CSharp}
       data:
-        name: Dvl
-        type: dvl
+        name: Gnss
+        type: gnss
         enabled: 1
-        frameId: dvl_link
-        frequency: 10
-        rosNamespace: dvl
+        frameId: gnss_link
+        frequency: 20
+        rosNamespace: gnss
         rosTopic: data
         pose:
-          position: {x: -0.21966895, y: -0.12828055, z: -0.12615246}
-          rotation: {x: 0, y: -0, z: -0.000010245284}
-        dvlSettings:
+          position: {x: 0.1347, y: -0, z: 0.086600006}
+          rotation: {x: 0, y: 0, z: 0}
+        gnssSettings:
           covariance:
-          - 0.0001
+          - 1.62
           - 0
           - 0
           - 0
+          - 1.62
           - 0
           - 0
           - 0
-          - 0.0001
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0.0001
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-    - rid: 8353887141511561430
+          - 6.48
+    - rid: 7991397939823247465
       type: {class: CameraCfg, ns: , asm: Assembly-CSharp}
       data:
-        name: RgbCam
+        name: RGBCamera
         type: camera
         enabled: 0
         frameId: rgb_camera_link
@@ -134,26 +121,9 @@ MonoBehaviour:
         rosNamespace: rgb_camera
         rosTopic: 
         pose:
-          position: {x: 0.28669298, y: -0.0003119707, z: 0.09244755}
-          rotation: {x: 0, y: -0, z: -0.000010245284}
+          position: {x: 0.16930002, y: -0, z: -0.06490001}
+          rotation: {x: 0, y: -60.000004, z: 0}
         cameraSettings:
           width: 640
           height: 480
           fovDegrees: 80
-    - rid: 8353887141511561431
-      type: {class: CameraCfg, ns: , asm: Assembly-CSharp}
-      data:
-        name: SteCam
-        type: camera
-        enabled: 0
-        frameId: stereo_link
-        frequency: 30
-        rosNamespace: stereo_camera
-        rosTopic: 
-        pose:
-          position: {x: 0.25719303, y: 0.0012880191, z: 0.09504755}
-          rotation: {x: 0, y: -0, z: -0.000010245284}
-        cameraSettings:
-          width: 640
-          height: 480
-          fovDegrees: 70

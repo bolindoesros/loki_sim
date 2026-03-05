@@ -1,3 +1,4 @@
+using MDS.FlightController;
 using Newtonsoft.Json;
 using System.IO;
 using UnityEditor;
@@ -41,6 +42,25 @@ public class RobotCfgLoaderEditor : Editor
             }
             else Debug.LogWarning("RobotCfgLoader: No TFMessageMsgPublisher found on robot to set TF publisher config.");
 
+            if (robotCfgLoader.TryGetComponent<FC_Base>(out var fc))
+            {
+                if (fc.controllerType == ControllerType.Ardupilot)
+                {
+                    ArdupilotControllerCfg ardupilotCfg = new();
+                    ardupilotCfg.apSitlSettings.sitlFreq = fc.apSitlSettings.sitlFreq;
+                    ardupilotCfg.apSitlSettings.sitlPort = fc.apSitlSettings.sitlPort;
+                    robotCfg.controllerCfg = ardupilotCfg;
+                }
+                else if (fc.controllerType == ControllerType.ROS)
+                {
+                    RosControllerCfg rosControllerCfg = new();
+                    rosControllerCfg.rosControlSettings.pwmTopicName = fc.rosControlSettings.pwmTopicName;
+                    robotCfg.controllerCfg = rosControllerCfg;
+                }
+                else Debug.LogWarning("Other controller types not implemented yet.");
+            }
+            else Debug.LogWarning("RobotCfgLoader: No FlightController found on robot to set controller config.");
+
             SensorCfgLoader sensorCfgLoader = robotCfgLoader.GetComponentInChildren<SensorCfgLoader>();
             if (sensorCfgLoader != null)
             {
@@ -54,12 +74,17 @@ public class RobotCfgLoaderEditor : Editor
 
         if (GUILayout.Button("Save to JSON"))
         {
-            robotCfgLoader.SetJsonDefaultSettings();
+            SaveJsonUtility.SetJsonDefaultSettings();
             string jsonString = JsonConvert.SerializeObject(robotCfg);
 
-            string filePath = SavePathUtility.GetSavePathForTransform(robotCfgLoader.transform);
-            File.WriteAllText(filePath, jsonString);
+            string fileName = robotCfgLoader.fileName;
+            string filePath;
+            if (SaveJsonUtility.IsValidFileName(fileName))
+                filePath = SaveJsonUtility.GetFullSavePath(fileName);
+            else
+                filePath = SaveJsonUtility.GetSavePathForTransform(robotCfgLoader.transform);
 
+            File.WriteAllText(filePath, jsonString);
             Debug.Log("Created robot config at " + filePath);
         }
 
@@ -92,9 +117,9 @@ public class RobotCfgLoaderEditor : Editor
             Debug.Log("Saved DefaultRobotCfg asset at " + targetPath);
 
             // Save to file
-            robotCfgLoader.SetJsonDefaultSettings();        
+            SaveJsonUtility.SetJsonDefaultSettings();
             string jsonString = JsonConvert.SerializeObject(defaultCfg);
-            string filePath = SavePathUtility.GetSavePath("DefaultRobotCfg.json");
+            string filePath = SaveJsonUtility.GetFullSavePath("DefaultRobotCfg.json");
             File.WriteAllText(filePath, jsonString);
             Debug.Log("Created DefaultRobotCfg.json at " + filePath);
         }

@@ -8,6 +8,8 @@ public class SensorCfgConverter : CustomPolymorphicConverter<SensorCfg>
             "camera" => new CameraCfg(),
             "dvl" => new DvlCfg(),
             "lidar" => new LidarCfg(),
+            "perception-camera" => new PerceptionCameraCfg(),
+            "gnss" => new GnssCfg(),
             _ => new SensorCfg()
         };
     }

@@ -1,36 +1,54 @@
-using Newtonsoft.Json;
+using MDS.ROS.Sensors;
 using System.Collections.Generic;
-using System.IO;
+using Unity.Mathematics;
+using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 using UnityEngine;
+using UnityEngine.Perception.GroundTruth;
+using UnityEngine.Perception.ROS;
+using UnitySensors.DataType.LiDAR;
+using UnitySensors.ROS.Publisher;
+using UnitySensors.ROS.Publisher.Sensor;
+using UnitySensors.ROS.Utils.Namespacing;
 using UnitySensors.Sensor;
 using UnitySensors.Sensor.Camera;
-using UnitySensors.ROS.Publisher;
-using UnitySensors.ROS.Utils.Namespacing;
-using MDS.ROS.Sensors;
+using UnitySensors.Sensor.LiDAR;
 using UnitySensors.Sensor.TF;
-using UnitySensors.ROS.Publisher.Sensor;
-using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 
+/// <summary>
+/// A loader that instantiates and configures sensors on a robot based on a list of SensorCfg objects.
+/// Meant to be run with RobotCfgLoader, not standalone.
+/// </summary>
 public class SensorCfgLoader : MonoBehaviour
 {
     [Header("Sensor Prefabs by Type")]
     [SerializeField] GameObject cameraPrefab;
     [SerializeField] GameObject imuPrefab;
     [SerializeField] GameObject dvlPrefab;
-    //[SerializeField] GameObject lidarPrefab;
-    //[SerializeField] GameObject gnssPrefab;
+    [SerializeField] GameObject pCameraPrefab;
+    [SerializeField] GameObject lidarPrefab;
+    [SerializeField] GameObject gnssPrefab;
 
     Dictionary<string, GameObject> prefabMap;
 
     void Awake()
     {
+        if (!enabled)
+            return;
+
+        if (GetComponentInParent<RobotCfgLoader>() == null)
+        {
+            Debug.LogWarning("SensorCfgLoader: RobotCfgLoader not exist. Not running loader.");
+            return;
+        }
+
         prefabMap = new Dictionary<string, GameObject>
         {
             { "camera", cameraPrefab },
             { "imu", imuPrefab },
             { "dvl", dvlPrefab },
-            //{ "lidar", lidarPrefab },
-            //{ "gnss", gnssPrefab }
+            { "perception-camera", pCameraPrefab },
+            { "lidar", lidarPrefab },
+            { "gnss", gnssPrefab }
         };
     }
 
@@ -147,6 +165,35 @@ public class SensorCfgLoader : MonoBehaviour
                 dvlPublisher.Serializer.Header.FrameId = cfg.frameId;
                 break;
 
+            case PerceptionCameraCfg pCamCfg:
+                var pcam = instance.GetComponentInChildren<Camera>();
+                pcam.fieldOfView = pCamCfg.cameraSettings.fovDegrees;
+                var bboxPublisher = instance.GetComponentInChildren<BoundingBoxPublisher>();
+                bboxPublisher.Serializer.ConfidenceRate = pCamCfg.confidenceRate;
+                bboxPublisher.Serializer.Header.FrameId = cfg.frameId;
+                break;
+
+            case GnssCfg gnssCfg:
+                var gnssPublisher = instance.GetComponentInChildren<GnssPublisher>();
+                gnssPublisher.Serializer.covariance = gnssCfg.gnssSettings.covariance;
+                gnssPublisher.Serializer.Header.FrameId = cfg.frameId;
+                break;
+
+            case LidarCfg lidarCfg:
+                var lidar = instance.GetComponentInChildren<LiDARSensor>();
+                lidar.minRange = lidarCfg.lidarSettings.minRange;
+                lidar.maxRange = lidarCfg.lidarSettings.maxRange;
+                lidar.gaussianNoiseSigma = lidarCfg.lidarSettings.gaussianNoiseSigma;
+                lidar.maxIntensity = lidarCfg.lidarSettings.maxIntensity;
+
+                var scanPattern = CreateScanPattern(lidarCfg);
+                lidar.scanPattern = scanPattern;
+                lidar.pointsNum = scanPattern.size;
+
+                var lidarPublisher = instance.GetComponentInChildren<LiDARPointCloud2MsgPublisher>();
+                lidarPublisher.Serializer.Header.FrameId = cfg.frameId;
+                break;
+
             // Other sensors will be added later
 
             default:
@@ -194,7 +241,12 @@ public class SensorCfgLoader : MonoBehaviour
             return "imu";
         if (sensorObject.GetComponentInChildren<DvlPublisher>() != null)
             return "dvl";
-
+        if (sensorObject.GetComponentInChildren<PerceptionCamera>() != null)
+            return "perception-camera";
+        if (sensorObject.GetComponentInChildren<GnssPublisher>() != null)
+            return "gnss";
+        if (sensorObject.GetComponentInChildren<LiDARSensor>() != null)
+            return "lidar";
         return null;
     }
 
@@ -212,6 +264,15 @@ public class SensorCfgLoader : MonoBehaviour
                 break;
             case "dvl":
                 cfg = CreateDvlConfig(sensorObject);
+                break;
+            case "perception-camera":
+                cfg = CreatePerceptionCameraConfig(sensorObject);
+                break;
+            case "gnss":
+                cfg = CreateGnssConfig(sensorObject);
+                break;
+            case "lidar":
+                cfg = CreateLidarConfig(sensorObject);
                 break;
             default:
                 Debug.LogWarning($"SensorCfgLoader: Unknown sensor type '{sensorType}'");
@@ -231,13 +292,13 @@ public class SensorCfgLoader : MonoBehaviour
             if (sensorObject.TryGetComponent<NamespaceManager>(out var nsManager))
             {
                 cfg.rosNamespace = nsManager.CurrentNamespace;
-            }
+            } else Debug.LogWarning($"SensorCfgLoader: NamespaceManager not found on sensor '{cfg.name}'");
 
             TFLink tFLink = sensorObject.GetComponentInChildren<TFLink>();
             if (tFLink != null)
             {
                 cfg.frameId = tFLink.FrameId;
-            }
+            } else Debug.LogWarning($"SensorCfgLoader: TFLink not found on sensor '{cfg.name}'");
 
             // Get frequency and topic from publisher
             var publishers = sensorObject.GetComponentsInChildren<RosMsgPublisher>();
@@ -246,7 +307,7 @@ public class SensorCfgLoader : MonoBehaviour
                 var publisher = publishers[0];
                 cfg.frequency = publisher.Frequency;
                 if (publishers.Length == 1) cfg.rosTopic = publisher.TopicName;
-            }
+            } else Debug.LogWarning($"SensorCfgLoader: No RosMsgPublisher found on sensor '{cfg.name}'");
         }
 
         return cfg;
@@ -256,9 +317,13 @@ public class SensorCfgLoader : MonoBehaviour
     {
         var cam = sensorObject.GetComponentInChildren<CameraSensor>();
         var imagePublisher = sensorObject.GetComponentInChildren<CompressedImageMsgPublisher>();
-        if (cam == null || imagePublisher == null) return null;
+        if (cam == null || imagePublisher == null)
+        {
+            Debug.LogError("SensorCfgLoader: Camera or Image Publisher not found");
+            return null;
+        }
 
-        CameraCfg cfg = new CameraCfg();
+        CameraCfg cfg = new();
         cfg.cameraSettings.width = cam.Resolution.x;
         cfg.cameraSettings.height = cam.Resolution.y;
         cfg.cameraSettings.fovDegrees = (int)cam.Fov;
@@ -270,9 +335,13 @@ public class SensorCfgLoader : MonoBehaviour
     ImuCfg CreateImuConfig(GameObject sensorObject)
     {
         var imuPublisher = sensorObject.GetComponentInChildren<ImuPublisher>();
-        if (imuPublisher == null) return null;
+        if (imuPublisher == null)
+        {
+            Debug.LogError("SensorCfgLoader: IMU Publisher not found");
+            return null;
+        }
 
-        ImuCfg cfg = new ImuCfg();
+        ImuCfg cfg = new();
         cfg.imuSettings.withGravity = imuPublisher.Serializer.withGravity;
         cfg.imuSettings.linearCovariance = imuPublisher.Serializer.linearAccelerationCovariance;
         cfg.imuSettings.angularCovariance = imuPublisher.Serializer.angularVelocityCovariance;
@@ -283,10 +352,116 @@ public class SensorCfgLoader : MonoBehaviour
     DvlCfg CreateDvlConfig(GameObject sensorObject)
     {
         var dvlPublisher = sensorObject.GetComponentInChildren<DvlPublisher>();
-        if (dvlPublisher == null) return null;
+        if (dvlPublisher == null)
+        {
+            Debug.LogError("SensorCfgLoader: DVL Publisher not found");
+            return null;
+        }
 
-        DvlCfg cfg = new DvlCfg();
+        DvlCfg cfg = new();
         cfg.dvlSettings.covariance = dvlPublisher.Serializer.covariance;
         return cfg;
+    }
+
+    PerceptionCameraCfg CreatePerceptionCameraConfig(GameObject sensorObject)
+    {
+        var cam = sensorObject.GetComponentInChildren<Camera>();
+        var bboxPublisher = sensorObject.GetComponentInChildren<BoundingBoxPublisher>();
+        if (cam == null || bboxPublisher == null)
+        {
+            Debug.LogError("SensorCfgLoader: Camera or BoundingBox Publisher not found");
+            return null;
+        }
+
+        PerceptionCameraCfg cfg = new();
+        cfg.cameraSettings.fovDegrees = (int)cam.fieldOfView;
+        cfg.confidenceRate = bboxPublisher.Serializer.ConfidenceRate;
+
+        return cfg;
+    }
+
+    GnssCfg CreateGnssConfig(GameObject sensorObject)
+    {
+        var gnssPublisher = sensorObject.GetComponentInChildren<GnssPublisher>();
+        if (gnssPublisher == null)
+        {
+            Debug.LogError("SensorCfgLoader: GNSS Publisher not found");
+            return null;
+        }
+
+        GnssCfg cfg = new();
+        cfg.gnssSettings.covariance = gnssPublisher.Serializer.covariance;
+        return cfg;
+    }
+
+    LidarCfg CreateLidarConfig(GameObject sensorObject)
+    {
+        var lidarSensor = sensorObject.GetComponentInChildren<LiDARSensor>();
+        var lidarPublisher = sensorObject.GetComponentInChildren<LiDARPointCloud2MsgPublisher>();
+        if (lidarSensor == null || lidarPublisher == null)
+        {
+            Debug.LogError("SensorCfgLoader: LiDAR Sensor or Publisher not found");
+            return null;
+        }
+
+        LidarCfg cfg = new();
+        cfg.lidarSettings.minRange = lidarSensor.minRange;
+        cfg.lidarSettings.maxRange = lidarSensor.maxRange;
+        cfg.lidarSettings.gaussianNoiseSigma = lidarSensor.gaussianNoiseSigma;
+        cfg.lidarSettings.maxIntensity = lidarSensor.maxIntensity;
+        cfg.lidarSettings.minAzimuthAngle = lidarSensor.scanPattern.minAzimuthAngle;
+        cfg.lidarSettings.maxAzimuthAngle = lidarSensor.scanPattern.maxAzimuthAngle;
+        cfg.lidarSettings.minZenithAngle = lidarSensor.scanPattern.minZenithAngle;
+        cfg.lidarSettings.maxZenithAngle = lidarSensor.scanPattern.maxZenithAngle;
+
+        int zenithCount = 1;
+        float firstAzimuth = Mathf.Atan2(lidarSensor.scanPattern.scans[0].x, lidarSensor.scanPattern.scans[0].z) * Mathf.Rad2Deg;
+
+        for (int i = 1; i < lidarSensor.scanPattern.size; i++)
+        {
+            float currentAzimuth = Mathf.Atan2(lidarSensor.scanPattern.scans[i].x, lidarSensor.scanPattern.scans[i].z) * Mathf.Rad2Deg;
+            if (Mathf.Abs(currentAzimuth - firstAzimuth) > 0.01f)
+                break;
+            zenithCount++;
+        }
+
+        cfg.lidarSettings.zenithAngleResolution = zenithCount;
+        cfg.lidarSettings.azimuthAngleResolution = lidarSensor.scanPattern.size / zenithCount;
+
+        return cfg;
+    }
+
+    ScanPattern CreateScanPattern(LidarCfg lidarCfg)
+    {
+        LidarSettings cfg = lidarCfg.lidarSettings;
+        ScanPattern scan = ScriptableObject.CreateInstance<ScanPattern>();
+
+        scan.size = cfg.zenithAngleResolution * cfg.azimuthAngleResolution;
+        scan.scans = new float3[scan.size];
+
+        float[] zenithAngles = new float[cfg.zenithAngleResolution];
+        for (int i = 0; i < cfg.zenithAngleResolution; i++)
+        {
+            zenithAngles[i] = Mathf.Lerp(cfg.minZenithAngle, cfg.maxZenithAngle, (float)i / cfg.zenithAngleResolution);
+        }
+
+        int index = 0;
+        for (int azimuth = 0; azimuth < cfg.azimuthAngleResolution; azimuth++)
+        {
+            float azimuthAngle = Mathf.Lerp(cfg.minAzimuthAngle, cfg.maxAzimuthAngle, (float)(azimuth) / cfg.azimuthAngleResolution);
+            foreach (float zenithAngle in zenithAngles)
+            {
+                scan.scans[index] = Quaternion.Euler(-zenithAngle, azimuthAngle, 0) * Vector3.forward;
+                index++;
+            }
+        }
+
+        scan.minAzimuthAngle = cfg.minAzimuthAngle;
+        scan.maxAzimuthAngle = cfg.maxAzimuthAngle;
+
+        scan.minZenithAngle = cfg.minZenithAngle;
+        scan.maxZenithAngle = cfg.maxZenithAngle;
+
+        return scan;
     }
 }

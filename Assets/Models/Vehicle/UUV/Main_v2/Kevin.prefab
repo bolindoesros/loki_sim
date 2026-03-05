@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: WaveHarmonic.Crest::WaveHarmonic.Crest.SphereWaterInteraction
   _Version: 0
-  _Radius: 0.1
+  _Radius: 0.075
   _Weight: 1.5
   _WeightVerticalMultiplier: 0.5
   _InnerSphereMultiplier: 1.55
@@ -1161,7 +1161,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _previewMeshNormals: 0
-  _previewMeshGeometricNormals: 0
   forceVisualScale: 0.001
   colorVisualScale: 0.01
   debugLinearVelocity: {x: 0, y: 0, z: 0}
@@ -1330,14 +1329,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _previewMeshNormals: 0
-  _previewMeshGeometricNormals: 0
   forceVisualScale: 0.001
   colorVisualScale: 0.01
   debugLinearVelocity: {x: 0, y: 0, z: 0}
   debugAngularVelocity: {x: 0, y: 0, z: 0}
   _relativeHeight: 0
-  _submergedVolume: 0.0031904061
-  _appliedBuoyantMass: 0.31904063
+  _submergedVolume: 0.0019613982
+  _appliedBuoyantMass: 0.19613981
 --- !u!64 &8910818246121999590
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1405,7 +1403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: WaveHarmonic.Crest::WaveHarmonic.Crest.SphereWaterInteraction
   _Version: 0
-  _Radius: 0.1
+  _Radius: 0.075
   _Weight: 1.5
   _WeightVerticalMultiplier: 0.5
   _InnerSphereMultiplier: 1.55
@@ -1574,10 +1572,10 @@ MonoBehaviour:
   _debugAngularVelocity: {x: 0, y: 0, z: 0}
   _showCob: 1
   _useKgUnitForForce: 1
-  _totalBuoyancy: 3.62991
+  _totalBuoyancy: 3.4990067
   _centerOfBuoyancy: {x: 0.0007007389, y: 0.05925998, z: 0.015484918}
-  _netForce: {x: 0, y: -0.0000011665741, z: 0}
-  _netTorque: {x: 0.110298455, y: 0, z: 0.0072874003}
+  _netForce: {x: 0, y: -0.000000777716, z: 0}
+  _netTorque: {x: 0.13490112, y: 0, z: 0.00969481}
   _waterObjectsDebugInfo:
   - name: Top Cover drag profile
     buoyancy: 0
@@ -1589,14 +1587,14 @@ MonoBehaviour:
     buoyancy: 0
     netForce: {x: 0, y: 0, z: 0}
   - name: Main Body drag profile
-    buoyancy: 0.31904063
-    netForce: {x: 0, y: 3.1297889, z: 0}
+    buoyancy: 0.19613981
+    netForce: {x: 0, y: 1.9241316, z: 0}
   - name: Arm drag profile
-    buoyancy: 1.1378639
-    netForce: {x: 0, y: 11.162441, z: 0}
+    buoyancy: 1.1378655
+    netForce: {x: 0, y: 11.162461, z: 0}
   - name: Small cylinder drag profile
-    buoyancy: 1.0330051
-    netForce: {x: 0, y: 10.13378, z: 0}
+    buoyancy: 1.025001
+    netForce: {x: 0, y: 10.055261, z: 0}
   - name: Big cylinder
     buoyancy: 0
     netForce: {x: 0, y: 0, z: 0}
@@ -4731,7 +4729,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 8507
+  m_VersionIndex: 8561
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4867,7 +4865,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _previewMeshNormals: 0
-  _previewMeshGeometricNormals: 0
   forceVisualScale: 0.001
   colorVisualScale: 0.01
   debugLinearVelocity: {x: 0, y: 0, z: 0}
@@ -5486,9 +5483,9 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810909874820117933}
   m_Enabled: 1
-  serializedVersion: 5
+  serializedVersion: 6
   m_Mass: 0.05
-  m_ParentAnchorPosition: {x: -0.22291538, y: -0.0063079596, z: -0.019417316}
+  m_ParentAnchorPosition: {x: -0.22291541, y: -0.0063079596, z: -0.019417286}
   m_ParentAnchorRotation: {x: 0.13492237, y: 0.6941153, z: -0.13492237, w: 0.6941153}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
@@ -5635,7 +5632,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _previewMeshNormals: 0
-  _previewMeshGeometricNormals: 0
   forceVisualScale: 0.001
   colorVisualScale: 0.01
   debugLinearVelocity: {x: 0, y: 0, z: 0}
@@ -5970,7 +5966,7 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1971923315486848364}
   m_Enabled: 1
-  serializedVersion: 5
+  serializedVersion: 6
   m_Mass: 0.05
   m_ParentAnchorPosition: {x: -0.19864345, y: 0.05310476, z: -0.21626908}
   m_ParentAnchorRotation: {x: 0.61237246, y: 0.35355335, z: -0.35355335, w: -0.61237246}
@@ -6119,7 +6115,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _previewMeshNormals: 0
-  _previewMeshGeometricNormals: 0
   forceVisualScale: 0.001
   colorVisualScale: 0.01
   debugLinearVelocity: {x: 0, y: 0, z: 0}
@@ -6791,9 +6786,9 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2372562469604847395}
   m_Enabled: 1
-  serializedVersion: 5
+  serializedVersion: 6
   m_Mass: 0.05
-  m_ParentAnchorPosition: {x: 0.19920474, y: 0.05310476, z: -0.21506917}
+  m_ParentAnchorPosition: {x: 0.19920468, y: 0.05310476, z: -0.21506917}
   m_ParentAnchorRotation: {x: 0.35355335, y: 0.61237246, z: -0.61237246, w: -0.35355335}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
@@ -6940,7 +6935,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _previewMeshNormals: 0
-  _previewMeshGeometricNormals: 0
   forceVisualScale: 0.001
   colorVisualScale: 0.01
   debugLinearVelocity: {x: 0, y: 0, z: 0}
@@ -7363,9 +7357,9 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2552768242660281594}
   m_Enabled: 1
-  serializedVersion: 5
+  serializedVersion: 6
   m_Mass: 0.05
-  m_ParentAnchorPosition: {x: 0.1797727, y: 0.048540473, z: 0.16693084}
+  m_ParentAnchorPosition: {x: 0.17977273, y: 0.048540473, z: 0.1669308}
   m_ParentAnchorRotation: {x: 0.61237246, y: 0.35355335, z: 0.35355335, w: 0.61237246}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
@@ -7512,7 +7506,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _previewMeshNormals: 0
-  _previewMeshGeometricNormals: 0
   forceVisualScale: 0.001
   colorVisualScale: 0.01
   debugLinearVelocity: {x: 0, y: 0, z: 0}
@@ -7899,7 +7892,7 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2780308596017674093}
   m_Enabled: 1
-  serializedVersion: 5
+  serializedVersion: 6
   m_Mass: 14.7
   m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
@@ -7997,6 +7990,12 @@ MonoBehaviour:
   - {fileID: 4998197127132495700}
   - {fileID: 1124786646745234302}
   - {fileID: 817721097831917428}
+  controllerType: 1
+  apSitlSettings:
+    sitlFreq: 800
+    sitlPort: 9002
+  rosControlSettings:
+    pwmTopicName: pwm_commands
   _onboardData:
     _isArmed: 0
     _altitude: 0
@@ -8004,15 +8003,6 @@ MonoBehaviour:
     _linearVelocity: {x: 0, y: 0, z: 0}
     _angularVelocity: {x: 0, y: 0, z: 0}
     _linearAccelerationWithGravity: {x: 0, y: 0, z: 0}
-  useSitl: 1
-  sitlFreq: 800
-  sitlPort: 9002
-  _sitlConnection:
-    _dataFromSitl:
-      magic: 0
-      frame_rate: 0
-      frame_count: 0
-      pwm: 0000000000000000000000000000000000000000000000000000000000000000
   _targetVelocityX: 0
   _targetVelocityY: 0
   _targetVelocityZ: 0
@@ -8029,7 +8019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da52735da9a66344bb7b54a822799c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnitySensorsROSRuntime::UnitySensors.ROS.Utils.Namespacing.NamespaceManager
-  _currentNamespace: kevin
+  _currentNamespace: uuv_kevin
 --- !u!114 &4325414162812866943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8042,7 +8032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a6512c6d49c2244a1a77e382c678b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnitySensorsROSRuntime::UnitySensors.Sensor.TF.TFLink
-  _frequency: 30
+  _frequency: 20
   _frame_id: base_link
   _children: []
 --- !u!114 &5324902547215901870
@@ -8082,6 +8072,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotCfgLoader
   robotCfg: {fileID: 11400000, guid: 2501615e578c3504c91722329bcdab36, type: 2}
+  fileName: uuv.json
+  robotType: uuv_kevin
 --- !u!1 &2822255901582677301
 GameObject:
   m_ObjectHideFlags: 0
@@ -8574,7 +8566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: WaveHarmonic.Crest::WaveHarmonic.Crest.SphereWaterInteraction
   _Version: 0
-  _Radius: 0.1
+  _Radius: 0.075
   _Weight: 1.5
   _WeightVerticalMultiplier: 0.5
   _InnerSphereMultiplier: 1.55
@@ -9828,9 +9820,9 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3643803434501692570}
   m_Enabled: 1
-  serializedVersion: 5
+  serializedVersion: 6
   m_Mass: 0.05
-  m_ParentAnchorPosition: {x: -0.17921133, y: 0.048540473, z: 0.16573094}
+  m_ParentAnchorPosition: {x: -0.17921138, y: 0.048540473, z: 0.16573095}
   m_ParentAnchorRotation: {x: 0.35355335, y: 0.61237246, z: 0.61237246, w: 0.35355335}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
@@ -9977,7 +9969,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _previewMeshNormals: 0
-  _previewMeshGeometricNormals: 0
   forceVisualScale: 0.001
   colorVisualScale: 0.01
   debugLinearVelocity: {x: 0, y: 0, z: 0}
@@ -11054,7 +11045,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _previewMeshNormals: 0
-  _previewMeshGeometricNormals: 0
   forceVisualScale: 0.001
   colorVisualScale: 0.01
   debugLinearVelocity: {x: 0, y: 0, z: 0}
@@ -11309,7 +11299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: WaveHarmonic.Crest::WaveHarmonic.Crest.SphereWaterInteraction
   _Version: 0
-  _Radius: 0.1
+  _Radius: 0.075
   _Weight: 1.5
   _WeightVerticalMultiplier: 0.5
   _InnerSphereMultiplier: 1.55
@@ -11373,9 +11363,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb2047c9f503764185bb1499d9b46b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensorCfgLoader
-  cameraPrefab: {fileID: 4948294396765195680}
-  imuPrefab: {fileID: 9015542536576246499}
-  dvlPrefab: {fileID: 6840422393832203032}
+  cameraPrefab: {fileID: 2016422477619200586, guid: de8b828c9027fd54f889ca8858a318e7,
+    type: 3}
+  imuPrefab: {fileID: 3526848927119471300, guid: 0846c8022425fd14abb1786fd98a045f,
+    type: 3}
+  dvlPrefab: {fileID: 575132099962276772, guid: e023d96d2d7f8c44a91d9ee7b4834774,
+    type: 3}
+  pCameraPrefab: {fileID: 8347420801520522871, guid: f875cfd7a1a0fe8479b8e186f0770af9,
+    type: 3}
+  lidarPrefab: {fileID: 7733431181577020600, guid: 9244081eb39740a4b8d5b98f1c7cd3ac,
+    type: 3}
+  gnssPrefab: {fileID: 6185576993927898735, guid: 15a4be1c391b246479f899852436fa1d,
+    type: 3}
 --- !u!114 &5289427292503717489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12324,7 +12323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: WaveHarmonic.Crest::WaveHarmonic.Crest.SphereWaterInteraction
   _Version: 0
-  _Radius: 0.1
+  _Radius: 0.075
   _Weight: 1.5
   _WeightVerticalMultiplier: 0.5
   _InnerSphereMultiplier: 1.55
@@ -14904,7 +14903,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 8191
+  m_VersionIndex: 8230
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -15040,14 +15039,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _previewMeshNormals: 0
-  _previewMeshGeometricNormals: 0
   forceVisualScale: 0.001
   colorVisualScale: 0.01
   debugLinearVelocity: {x: 0, y: 0, z: 0}
   debugAngularVelocity: {x: 0, y: 0, z: 0}
   _relativeHeight: 0
-  _submergedVolume: 0.0023705494
-  _appliedBuoyantMass: 1.1378639
+  _submergedVolume: 0.0023705533
+  _appliedBuoyantMass: 1.1378655
 --- !u!65 &5114297520785634311
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17794,7 +17792,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6193
+  m_VersionIndex: 6232
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -17930,14 +17928,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _previewMeshNormals: 0
-  _previewMeshGeometricNormals: 0
   forceVisualScale: 0.001
   colorVisualScale: 0.01
   debugLinearVelocity: {x: 0, y: 0, z: 0}
   debugAngularVelocity: {x: 0, y: 0, z: 0}
   _relativeHeight: 0
-  _submergedVolume: 0.00413202
-  _appliedBuoyantMass: 1.0330051
+  _submergedVolume: 0.004100007
+  _appliedBuoyantMass: 1.025001
 --- !u!65 &8134677583273473304
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18374,9 +18371,9 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6002619021663230940}
   m_Enabled: 1
-  serializedVersion: 5
+  serializedVersion: 6
   m_Mass: 0.05
-  m_ParentAnchorPosition: {x: 0.22347674, y: -0.0063079596, z: -0.019417375}
+  m_ParentAnchorPosition: {x: 0.22347677, y: -0.0063079596, z: -0.019417405}
   m_ParentAnchorRotation: {x: -0.13492237, y: 0.6941153, z: 0.13492237, w: 0.6941153}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
@@ -18523,7 +18520,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _previewMeshNormals: 0
-  _previewMeshGeometricNormals: 0
   forceVisualScale: 0.001
   colorVisualScale: 0.01
   debugLinearVelocity: {x: 0, y: 0, z: 0}
@@ -19082,7 +19078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: WaveHarmonic.Crest::WaveHarmonic.Crest.SphereWaterInteraction
   _Version: 0
-  _Radius: 0.1
+  _Radius: 0.075
   _Weight: 1.5
   _WeightVerticalMultiplier: 0.5
   _InnerSphereMultiplier: 1.55
@@ -22652,7 +22648,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 9782
+  m_VersionIndex: 9821
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -22788,7 +22784,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _previewMeshNormals: 0
-  _previewMeshGeometricNormals: 0
   forceVisualScale: 0.001
   colorVisualScale: 0.01
   debugLinearVelocity: {x: 0, y: 0, z: 0}
@@ -23088,7 +23083,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _previewMeshNormals: 0
-  _previewMeshGeometricNormals: 0
   forceVisualScale: 0.001
   colorVisualScale: 0.01
   debugLinearVelocity: {x: 0, y: 0, z: 0}
@@ -23561,7 +23555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: WaveHarmonic.Crest::WaveHarmonic.Crest.SphereWaterInteraction
   _Version: 0
-  _Radius: 0.1
+  _Radius: 0.075
   _Weight: 1.5
   _WeightVerticalMultiplier: 0.5
   _InnerSphereMultiplier: 1.55
@@ -26186,7 +26180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3797509193696006384
 Transform:
   m_ObjectHideFlags: 0
@@ -26882,12 +26876,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0846c8022425fd14abb1786fd98a045f, type: 3}
---- !u!1 &9015542536576246499 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3526848927119471300, guid: 0846c8022425fd14abb1786fd98a045f,
-    type: 3}
-  m_PrefabInstance: {fileID: 5614940086507491367}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9015542536576246502 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3526848927119471297, guid: 0846c8022425fd14abb1786fd98a045f,
@@ -26988,12 +26976,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6419116514805541052}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6840422393832203032 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 575132099962276772, guid: e023d96d2d7f8c44a91d9ee7b4834774,
-    type: 3}
-  m_PrefabInstance: {fileID: 6419116514805541052}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6868018045695414250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27015,7 +26997,7 @@ PrefabInstance:
     - target: {fileID: 2016422477619200581, guid: de8b828c9027fd54f889ca8858a318e7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.539
+      value: 0.515
       objectReference: {fileID: 0}
     - target: {fileID: 2016422477619200581, guid: de8b828c9027fd54f889ca8858a318e7,
         type: 3}
@@ -27057,22 +27039,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RgbCam
       objectReference: {fileID: 0}
-    - target: {fileID: 2016422477619200586, guid: de8b828c9027fd54f889ca8858a318e7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de8b828c9027fd54f889ca8858a318e7, type: 3}
---- !u!1 &4948294396765195680 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2016422477619200586, guid: de8b828c9027fd54f889ca8858a318e7,
-    type: 3}
-  m_PrefabInstance: {fileID: 6868018045695414250}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4948294396765195695 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2016422477619200581, guid: de8b828c9027fd54f889ca8858a318e7,

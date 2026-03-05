@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 public class DvlCfg : SensorCfg
 {
     [JsonProperty("dvl-settings")] public DvlSettings dvlSettings = new();
+
+    public DvlCfg() { type = "dvl"; }
 }
 
 [System.Serializable]

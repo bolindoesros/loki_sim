@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5242228902848462162}
   - component: {fileID: 1573459364119528980}
   - component: {fileID: 6933627490354214552}
+  - component: {fileID: 6773596164918694235}
   m_Layer: 0
   m_Name: PoolWaterCrest
   m_TagString: Untagged
@@ -353,6 +354,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d97e15b79011941a278499a2361186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: CrestDWP2Asmdef::NWH.DWP2.WaterData.CrestWaterDataProvider
+--- !u!65 &6773596164918694235
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884683008341869080}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10000, y: 0.05, z: 10000}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &994796458251796088
 GameObject:
   m_ObjectHideFlags: 0
