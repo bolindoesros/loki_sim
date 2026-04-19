@@ -13,11 +13,6 @@
 	url = git@github.com:NTU-Mecatron/com.waveharmonic.crest.git
 	branch = main
 	ignore = dirty
-[submodule "Packages/com.unity.perception"]
-	path = Packages/com.unity.perception
-	url = git@github.com:NTU-Mecatron/com.unity.perception.git
-	branch = main
-	ignore = dirty
 [submodule "Packages/UnitySensors"]
 	path = Packages/UnitySensors
 	url = git@github.com:NTU-Mecatron/UnitySensors.git
