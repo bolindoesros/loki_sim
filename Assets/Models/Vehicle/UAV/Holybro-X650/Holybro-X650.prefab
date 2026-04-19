@@ -192,7 +192,7 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 162414842277017663}
   m_Enabled: 1
-  serializedVersion: 5
+  serializedVersion: 6
   m_Mass: 1
   m_ParentAnchorPosition: {x: -0.22877318, y: 0.06660515, z: -0.23103464}
   m_ParentAnchorRotation: {x: -0.6532815, y: 0.6532815, z: 0.27059805, w: -0.27059805}
@@ -1660,7 +1660,7 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1655077866179983990}
   m_Enabled: 1
-  serializedVersion: 5
+  serializedVersion: 6
   m_Mass: 4.807
   m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
@@ -1760,6 +1760,8 @@ MonoBehaviour:
   apSitlSettings:
     sitlFreq: 800
     sitlPort: 9012
+  rosControlSettings:
+    pwmTopicName: pwm_commands
   _onboardData:
     _isArmed: 0
     _altitude: 0
@@ -4445,7 +4447,7 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4815492082401637202}
   m_Enabled: 1
-  serializedVersion: 5
+  serializedVersion: 6
   m_Mass: 1
   m_ParentAnchorPosition: {x: 0.23104012, y: 0.06660515, z: -0.23103464}
   m_ParentAnchorRotation: {x: -0.6532815, y: 0.6532815, z: -0.27059805, w: 0.27059805}
@@ -5047,7 +5049,7 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5599453659827413230}
   m_Enabled: 1
-  serializedVersion: 5
+  serializedVersion: 6
   m_Mass: 1
   m_ParentAnchorPosition: {x: 0.23104012, y: 0.06660515, z: 0.22877878}
   m_ParentAnchorRotation: {x: -0.6532815, y: 0.6532815, z: 0.27059805, w: -0.27059805}
@@ -6194,7 +6196,7 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7387244637823426692}
   m_Enabled: 1
-  serializedVersion: 5
+  serializedVersion: 6
   m_Mass: 1
   m_ParentAnchorPosition: {x: -0.22877318, y: 0.06660515, z: 0.22877878}
   m_ParentAnchorRotation: {x: -0.6532815, y: 0.6532815, z: -0.27059805, w: 0.27059805}

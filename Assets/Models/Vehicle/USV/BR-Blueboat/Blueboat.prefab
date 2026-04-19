@@ -1200,7 +1200,7 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3694522027597692819}
   m_Enabled: 1
-  serializedVersion: 5
+  serializedVersion: 6
   m_Mass: 1
   m_ParentAnchorPosition: {x: 0.29439998, y: -0.272, z: -0.488}
   m_ParentAnchorRotation: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
@@ -1652,7 +1652,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _previewMeshNormals: 0
-  _previewMeshGeometricNormals: 0
   forceVisualScale: 0.001
   colorVisualScale: 0.01
   debugLinearVelocity: {x: 0, y: 0, z: 0}
@@ -2941,7 +2940,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _previewMeshNormals: 0
-  _previewMeshGeometricNormals: 0
   forceVisualScale: 0.001
   colorVisualScale: 0.01
   debugLinearVelocity: {x: 0, y: 0, z: 0}
@@ -3112,7 +3110,7 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8362171214513785801}
   m_Enabled: 1
-  serializedVersion: 5
+  serializedVersion: 6
   m_Mass: 20
   m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
@@ -3210,6 +3208,8 @@ MonoBehaviour:
   apSitlSettings:
     sitlFreq: 800
     sitlPort: 9022
+  rosControlSettings:
+    pwmTopicName: pwm_commands
   _onboardData:
     _isArmed: 0
     _altitude: 0
@@ -3553,7 +3553,7 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9149329887120918292}
   m_Enabled: 1
-  serializedVersion: 5
+  serializedVersion: 6
   m_Mass: 1
   m_ParentAnchorPosition: {x: -0.29439998, y: -0.272, z: -0.488}
   m_ParentAnchorRotation: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
