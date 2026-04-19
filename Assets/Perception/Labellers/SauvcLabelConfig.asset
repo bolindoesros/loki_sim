@@ -13,23 +13,26 @@ MonoBehaviour:
   m_Name: SauvcLabelConfig
   m_EditorClassIdentifier: 
   m_LabelEntries:
-  - label: blue_flare
+  - label: blue-flare
     id: 1
     hierarchyRelation: 0
-  - label: blue_pail
+  - label: blue-pail
     id: 2
     hierarchyRelation: 0
   - label: gate
     id: 3
     hierarchyRelation: 0
-  - label: red_flare
+  - label: orange-flare
     id: 4
     hierarchyRelation: 0
-  - label: red_pail
+  - label: red-flare
     id: 5
     hierarchyRelation: 0
-  - label: yellow_flare
+  - label: red-pail
     id: 6
+    hierarchyRelation: 0
+  - label: yellow-flare
+    id: 7
     hierarchyRelation: 0
   autoAssignIds: 1
   startingLabelId: 1

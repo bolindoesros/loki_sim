@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a6512c6d49c2244a1a77e382c678b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnitySensorsROSRuntime::UnitySensors.Sensor.TF.TFLink
-  _frequency: 30
+  _frequency: 10
   _frame_id: map
   _children: []
 --- !u!114 &6461576810273861274
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _topicName: /clock
-  _frequency: 100
+  _frequency: 50
 --- !u!1 &7150458837727446443
 GameObject:
   m_ObjectHideFlags: 0

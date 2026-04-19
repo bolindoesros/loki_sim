@@ -4,7 +4,6 @@ using Unity.Mathematics;
 using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 using UnityEngine;
 using UnityEngine.Perception.GroundTruth;
-using UnityEngine.Perception.ROS;
 using UnitySensors.DataType.LiDAR;
 using UnitySensors.ROS.Publisher;
 using UnitySensors.ROS.Publisher.Sensor;
@@ -165,14 +164,6 @@ public class SensorCfgLoader : MonoBehaviour
                 dvlPublisher.Serializer.Header.FrameId = cfg.frameId;
                 break;
 
-            case PerceptionCameraCfg pCamCfg:
-                var pcam = instance.GetComponentInChildren<Camera>();
-                pcam.fieldOfView = pCamCfg.cameraSettings.fovDegrees;
-                var bboxPublisher = instance.GetComponentInChildren<BoundingBoxPublisher>();
-                bboxPublisher.Serializer.ConfidenceRate = pCamCfg.confidenceRate;
-                bboxPublisher.Serializer.Header.FrameId = cfg.frameId;
-                break;
-
             case GnssCfg gnssCfg:
                 var gnssPublisher = instance.GetComponentInChildren<GnssPublisher>();
                 gnssPublisher.Serializer.covariance = gnssCfg.gnssSettings.covariance;
@@ -264,9 +255,6 @@ public class SensorCfgLoader : MonoBehaviour
                 break;
             case "dvl":
                 cfg = CreateDvlConfig(sensorObject);
-                break;
-            case "perception-camera":
-                cfg = CreatePerceptionCameraConfig(sensorObject);
                 break;
             case "gnss":
                 cfg = CreateGnssConfig(sensorObject);
@@ -360,23 +348,6 @@ public class SensorCfgLoader : MonoBehaviour
 
         DvlCfg cfg = new();
         cfg.dvlSettings.covariance = dvlPublisher.Serializer.covariance;
-        return cfg;
-    }
-
-    PerceptionCameraCfg CreatePerceptionCameraConfig(GameObject sensorObject)
-    {
-        var cam = sensorObject.GetComponentInChildren<Camera>();
-        var bboxPublisher = sensorObject.GetComponentInChildren<BoundingBoxPublisher>();
-        if (cam == null || bboxPublisher == null)
-        {
-            Debug.LogError("SensorCfgLoader: Camera or BoundingBox Publisher not found");
-            return null;
-        }
-
-        PerceptionCameraCfg cfg = new();
-        cfg.cameraSettings.fovDegrees = (int)cam.fieldOfView;
-        cfg.confidenceRate = bboxPublisher.Serializer.ConfidenceRate;
-
         return cfg;
     }
 

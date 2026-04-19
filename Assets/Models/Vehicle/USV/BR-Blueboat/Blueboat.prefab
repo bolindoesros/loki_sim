@@ -1202,7 +1202,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 6
   m_Mass: 1
-  m_ParentAnchorPosition: {x: 0.29439998, y: -0.272, z: -0.488}
+  m_ParentAnchorPosition: {x: 0.29439998, y: -0.272, z: -0.48799992}
   m_ParentAnchorRotation: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
@@ -3257,7 +3257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cde12085c739d548a159c84b40bbd2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnitySensorsROSRuntime::UnitySensors.ROS.Publisher.Tf2.TFMessageMsgPublisher
-  _frequency: 20
+  _frequency: 10
   _topicName: tf
   _serializer:
     _msg:
@@ -3555,7 +3555,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 6
   m_Mass: 1
-  m_ParentAnchorPosition: {x: -0.29439998, y: -0.272, z: -0.488}
+  m_ParentAnchorPosition: {x: -0.29439998, y: -0.272, z: -0.48799992}
   m_ParentAnchorRotation: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}

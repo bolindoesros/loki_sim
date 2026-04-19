@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f98242ad4bb68b4d9fcc6d970bd1689, type: 3}
   m_Name: X650_UAV_Cfg
   m_EditorClassIdentifier: Assembly-CSharp::RobotCfg
-  rosNamespace: /x650_drone
+  rosNamespace: uav_x650
   baseLinkId: base_link
   tfPublisher:
     enabled: 1
-    frequency: 20
+    frequency: 10
     rosTopic: tf
     publishChildLinks: 1
   controllerCfg:
-    rid: 7991397939823247462
+    rid: 2561570062490140782
   sensors:
-  - rid: 7991397939823247463
-  - rid: 7991397939823247464
-  - rid: 7991397939823247465
+  - rid: 2561570062490140783
+  - rid: 2561570062490140784
+  - rid: 2561570062490140785
   waterDragCfg:
     rid: -2
   propellerDragCfg:
@@ -34,14 +34,14 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 7991397939823247462
+    - rid: 2561570062490140782
       type: {class: ArdupilotControllerCfg, ns: , asm: Assembly-CSharp}
       data:
         type: ardupilot
         apSitlSettings:
           sitlFreq: 800
           sitlPort: 9012
-    - rid: 7991397939823247463
+    - rid: 2561570062490140783
       type: {class: ImuCfg, ns: , asm: Assembly-CSharp}
       data:
         name: Imu
@@ -86,7 +86,7 @@ MonoBehaviour:
           - 0
           - 0
           - 0.00122
-    - rid: 7991397939823247464
+    - rid: 2561570062490140784
       type: {class: GnssCfg, ns: , asm: Assembly-CSharp}
       data:
         name: Gnss
@@ -110,14 +110,14 @@ MonoBehaviour:
           - 0
           - 0
           - 6.48
-    - rid: 7991397939823247465
+    - rid: 2561570062490140785
       type: {class: CameraCfg, ns: , asm: Assembly-CSharp}
       data:
         name: RGBCamera
         type: camera
         enabled: 0
-        frameId: rgb_camera_link
-        frequency: 30
+        frameId: camera_optical_frame
+        frequency: 15
         rosNamespace: rgb_camera
         rosTopic: 
         pose:

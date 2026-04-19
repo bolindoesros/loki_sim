@@ -1,9 +1,9 @@
 {
-  "ros-namespace": "/x650_drone",
+  "ros-namespace": "uav_x650",
   "base-link-id": "base_link",
   "tf-publisher": {
     "enabled": true,
-    "frequency": 20.0,
+    "frequency": 10.0,
     "ros-topic": "tf",
     "publish-child-links": true
   },
@@ -70,8 +70,8 @@
       "name": "RGBCamera",
       "type": "camera",
       "enabled": false,
-      "frame-id": "rgb_camera_link",
-      "frequency": 30.0,
+      "frame-id": "camera_optical_frame",
+      "frequency": 15.0,
       "ros-namespace": "rgb_camera",
       "pose": {
         "position": {

@@ -1,5 +1,5 @@
 {
-  "ros-namespace": "kevin",
+  "ros-namespace": "uuv_kevin",
   "base-link-id": "base_link",
   "tf-publisher": {
     "enabled": true,
@@ -25,7 +25,7 @@
       "ros-topic": "imu/data",
       "pose": {
         "position": {
-          "x": -0.252307,
+          "x": -0.252307057,
           "y": 0.09248793,
           "z": -0.08485246
         },
@@ -52,7 +52,7 @@
       "ros-topic": "data",
       "pose": {
         "position": {
-          "x": -0.219668955,
+          "x": -0.219668984,
           "y": -0.12828055,
           "z": -0.126152456
         },
@@ -67,43 +67,15 @@
       }
     },
     {
-      "name": "PCam",
-      "type": "perception-camera",
-      "enabled": false,
-      "frame-id": "perception_camera_link",
-      "frequency": 30.0,
-      "ros-namespace": "perception_camera",
-      "ros-topic": "detection/bounding_boxes",
-      "pose": {
-        "position": {
-          "x": 0.293000162,
-          "y": -7.450581E-09,
-          "z": 0.09800005
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0
-        }
-      },
-      "camera-settings": {
-        "width": 640,
-        "height": 480,
-        "fov-degrees": 67
-      },
-      "confidence-rate": 0.7
-    },
-    {
       "name": "RgbCam",
       "type": "camera",
       "enabled": true,
-      "frame-id": "rgb_camera_link",
-      "frequency": 30.0,
+      "frame-id": "camera_optical_frame",
+      "frequency": 15.0,
       "ros-namespace": "rgb_camera",
-      "ros-topic": "",
       "pose": {
         "position": {
-          "x": 0.262693,
+          "x": 0.262693048,
           "y": -0.000311978161,
           "z": 0.09244755
         },
@@ -124,12 +96,11 @@
       "type": "camera",
       "enabled": false,
       "frame-id": "stereo_link",
-      "frequency": 30.0,
+      "frequency": 15.0,
       "ros-namespace": "stereo_camera",
-      "ros-topic": "",
       "pose": {
         "position": {
-          "x": 0.257193029,
+          "x": 0.257192969,
           "y": 0.00128801912,
           "z": 0.09504755
         },

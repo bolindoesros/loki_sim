@@ -64,7 +64,8 @@ public class CameraWindowManager : MonoBehaviour
             };
             rt.Create();
             targetCamera.targetTexture = rt;
-        } else
+        }
+        else
         {
             rt = targetCamera.targetTexture;
         }
@@ -87,18 +88,18 @@ public class CameraWindowManager : MonoBehaviour
         if (!closeButtonFound) Debug.LogWarning("No button named 'Close button' found in the display window prefab.");
 
         // If this is Perception Camera, assign the RawImage and disable visualizations
-        if (TryGetComponent<PerceptionCamera>(out var pCam))
-        {
-            pCam.outputView = rawImage;
-            pCam.SetVisualizationActive(false);
-        }
+        //if (TryGetComponent<PerceptionCamera>(out var pCam))
+        //{
+        //    pCam.outputView = rawImage;
+        //    pCam.SetVisualizationActive(false);
+        //}
 
         // Adjust aspect ratio
         if (displayWindow.TryGetComponent<AspectRatioFitter>(out var aspectFitter))
         {
             aspectFitter.aspectRatio = (float)resolution.x / resolution.y;
         }
-        
+
         displayWindow.name = targetCamera.name + " panel";
         displayWindow.SetActive(false); // Default inactive
         Debug.Log($"Successfully linked {targetCamera.name} to {displayWindow.name}");
@@ -116,8 +117,8 @@ public class CameraWindowManager : MonoBehaviour
             return;
         }
         displayWindow.SetActive(isOn);
-        if (TryGetComponent<PerceptionCamera>(out var pCam))
-            pCam.SetVisualizationActive(isOn);
+        //if (TryGetComponent<PerceptionCamera>(out var pCam))
+        //    pCam.SetVisualizationActive(isOn);
     }
 
     void OnDestroy()

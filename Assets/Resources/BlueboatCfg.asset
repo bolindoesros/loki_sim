@@ -12,20 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f98242ad4bb68b4d9fcc6d970bd1689, type: 3}
   m_Name: BlueboatCfg
   m_EditorClassIdentifier: Assembly-CSharp::RobotCfg
-  rosNamespace: /blueboat
+  rosNamespace: usv_blueboat
   baseLinkId: base_link
   tfPublisher:
     enabled: 1
-    frequency: 20
+    frequency: 10
     rosTopic: tf
     publishChildLinks: 1
   controllerCfg:
-    rid: 7991397939823247455
+    rid: 2561570062490140777
   sensors:
-  - rid: 7991397939823247456
-  - rid: 7991397939823247457
-  - rid: 7991397939823247458
-  - rid: 7991397939823247459
+  - rid: 2561570062490140778
+  - rid: 2561570062490140779
+  - rid: 2561570062490140780
+  - rid: 2561570062490140781
   waterDragCfg:
     rid: -2
   propellerDragCfg:
@@ -35,14 +35,14 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 7991397939823247455
+    - rid: 2561570062490140777
       type: {class: ArdupilotControllerCfg, ns: , asm: Assembly-CSharp}
       data:
         type: ardupilot
         apSitlSettings:
           sitlFreq: 800
           sitlPort: 9022
-    - rid: 7991397939823247456
+    - rid: 2561570062490140778
       type: {class: ImuCfg, ns: , asm: Assembly-CSharp}
       data:
         name: Imu
@@ -87,7 +87,7 @@ MonoBehaviour:
           - 0
           - 0
           - 0.00122
-    - rid: 7991397939823247457
+    - rid: 2561570062490140779
       type: {class: GnssCfg, ns: , asm: Assembly-CSharp}
       data:
         name: Gnss
@@ -111,7 +111,7 @@ MonoBehaviour:
           - 0
           - 0
           - 6.48
-    - rid: 7991397939823247458
+    - rid: 2561570062490140780
       type: {class: LidarCfg, ns: , asm: Assembly-CSharp}
       data:
         name: Lidar
@@ -122,7 +122,7 @@ MonoBehaviour:
         rosNamespace: lidar
         rosTopic: point_cloud
         pose:
-          position: {x: 0.2982, y: -0, z: 0.048899993}
+          position: {x: 0.29820013, y: -0, z: 0.04890001}
           rotation: {x: 0, y: 0, z: 0}
         lidarSettings:
           minRange: 0.5
@@ -135,18 +135,18 @@ MonoBehaviour:
           azimuthAngleResolution: 1024
           gaussianNoiseSigma: 0.02
           maxIntensity: 255
-    - rid: 7991397939823247459
+    - rid: 2561570062490140781
       type: {class: CameraCfg, ns: , asm: Assembly-CSharp}
       data:
         name: RGBCamera
         type: camera
         enabled: 0
-        frameId: rgb_camera_link
-        frequency: 30
+        frameId: camera_optical_frame
+        frequency: 15
         rosNamespace: rgb_camera
         rosTopic: 
         pose:
-          position: {x: 0.3692, y: -0, z: 0.0536}
+          position: {x: 0.3692, y: -0, z: 0.053600013}
           rotation: {x: 0, y: 0, z: 0}
         cameraSettings:
           width: 640

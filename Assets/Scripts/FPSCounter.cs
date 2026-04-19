@@ -30,11 +30,12 @@ public class FPSCounter : MonoBehaviour
         // Update the FPS display at the specified interval
         if (timeLeft <= 0f)
         {
-            currentFPS = frames / accumulatedTime;
+            //currentFPS = frames / accumulatedTime;
+            float msPerFrame = (accumulatedTime / frames) * 1000f;
 
             if (fpsText != null)
             {
-                fpsText.text = Mathf.RoundToInt(currentFPS).ToString() + " FPS";
+                fpsText.text = (msPerFrame).ToString("F1") + " ms";
             }
 
             // Reset for next interval

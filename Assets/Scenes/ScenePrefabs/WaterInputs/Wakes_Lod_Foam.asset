@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Version: 0
   _Maximum: Infinity
-  _FoamFadeRate: 0.5
-  _WaveFoamStrength: 4
+  _FoamFadeRate: 6.9179106
+  _WaveFoamStrength: 2.8805969
   _WaveFoamCoverage: 0.8
   _FilterWaves: 0
   _ShorelineFoamMaximumDepth: 0.65

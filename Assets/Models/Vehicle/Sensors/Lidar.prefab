@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3201613926292940941}
   - component: {fileID: 2045212504230035535}
   - component: {fileID: 4172439335183973428}
-  - component: {fileID: 4184507570743424975}
+  - component: {fileID: 4632768986527308406}
   m_Layer: 0
   m_Name: Sensor
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MonoBehaviour:
       _source: {fileID: 2045212504230035535}
       _frame_id: lidar_link
   _source: {fileID: 2045212504230035535}
---- !u!114 &4184507570743424975
+--- !u!114 &4632768986527308406
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -80,7 +80,6 @@ Material:
     - _BUILTIN_ZWrite: 1
     - _Crest_AlbedoEnabled: 0
     - _Crest_CausticsEnabled: 1
-    - _Crest_CausticsStrength: 0.98
     - _Crest_DirectTerm: 1
     - _Crest_FoamEnabled: 1
     - _Crest_NormalMapEnabled: 1

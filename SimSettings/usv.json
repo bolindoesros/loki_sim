@@ -1,9 +1,9 @@
 {
-  "ros-namespace": "/blueboat",
+  "ros-namespace": "usv_blueboat",
   "base-link-id": "base_link",
   "tf-publisher": {
     "enabled": true,
-    "frequency": 20.0,
+    "frequency": 10.0,
     "ros-topic": "tf",
     "publish-child-links": true
   },
@@ -76,9 +76,9 @@
       "ros-topic": "point_cloud",
       "pose": {
         "position": {
-          "x": 0.2982,
+          "x": 0.29820013,
           "y": 0.0,
-          "z": 0.0488999933
+          "z": 0.04890001
         },
         "rotation": {
           "x": 0.0,
@@ -103,15 +103,14 @@
       "name": "RGBCamera",
       "type": "camera",
       "enabled": false,
-      "frame-id": "rgb_camera_link",
-      "frequency": 30.0,
+      "frame-id": "camera_optical_frame",
+      "frequency": 15.0,
       "ros-namespace": "rgb_camera",
-      "ros-topic": "",
       "pose": {
         "position": {
           "x": 0.3692,
           "y": 0.0,
-          "z": 0.0536
+          "z": 0.0536000133
         },
         "rotation": {
           "x": 0.0,

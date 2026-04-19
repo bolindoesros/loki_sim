@@ -20,13 +20,12 @@ MonoBehaviour:
     rosTopic: tf
     publishChildLinks: 1
   controllerCfg:
-    rid: 70835059691356251
+    rid: 2561570062490140772
   sensors:
-  - rid: 70835059691356252
-  - rid: 70835059691356253
-  - rid: 70835059691356254
-  - rid: 70835059691356255
-  - rid: 70835059691356256
+  - rid: 2561570062490140773
+  - rid: 2561570062490140774
+  - rid: 2561570062490140775
+  - rid: 2561570062490140776
   waterDragCfg:
     rid: -2
   propellerDragCfg:
@@ -36,14 +35,14 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 70835059691356251
+    - rid: 2561570062490140772
       type: {class: ArdupilotControllerCfg, ns: , asm: Assembly-CSharp}
       data:
         type: ardupilot
         apSitlSettings:
           sitlFreq: 800
           sitlPort: 9002
-    - rid: 70835059691356252
+    - rid: 2561570062490140773
       type: {class: ImuCfg, ns: , asm: Assembly-CSharp}
       data:
         name: Imu
@@ -54,7 +53,7 @@ MonoBehaviour:
         rosNamespace: mavros
         rosTopic: imu/data
         pose:
-          position: {x: -0.252307, y: 0.09248793, z: -0.08485246}
+          position: {x: -0.25230706, y: 0.09248793, z: -0.08485246}
           rotation: {x: 0, y: -0, z: -0.000010245284}
         imuSettings:
           withGravity: 1
@@ -88,7 +87,7 @@ MonoBehaviour:
           - 0
           - 0
           - 0.00122
-    - rid: 70835059691356253
+    - rid: 2561570062490140774
       type: {class: DvlCfg, ns: , asm: Assembly-CSharp}
       data:
         name: Dvl
@@ -99,7 +98,7 @@ MonoBehaviour:
         rosNamespace: dvl
         rosTopic: data
         pose:
-          position: {x: -0.21966895, y: -0.12828055, z: -0.12615246}
+          position: {x: -0.21966898, y: -0.12828055, z: -0.12615246}
           rotation: {x: 0, y: -0, z: -0.000010245284}
         dvlSettings:
           covariance:
@@ -139,53 +138,35 @@ MonoBehaviour:
           - 0
           - 0
           - 0
-    - rid: 70835059691356254
-      type: {class: PerceptionCameraCfg, ns: , asm: Assembly-CSharp}
-      data:
-        name: PCam
-        type: perception-camera
-        enabled: 0
-        frameId: perception_camera_link
-        frequency: 30
-        rosNamespace: perception_camera
-        rosTopic: detection/bounding_boxes
-        pose:
-          position: {x: 0.29300016, y: -0.000000007450581, z: 0.09800005}
-          rotation: {x: 0, y: 0, z: 0}
-        cameraSettings:
-          width: 640
-          height: 480
-          fovDegrees: 67
-        confidenceRate: 0.7
-    - rid: 70835059691356255
+    - rid: 2561570062490140775
       type: {class: CameraCfg, ns: , asm: Assembly-CSharp}
       data:
         name: RgbCam
         type: camera
         enabled: 1
-        frameId: rgb_camera_link
-        frequency: 30
+        frameId: camera_optical_frame
+        frequency: 15
         rosNamespace: rgb_camera
         rosTopic: 
         pose:
-          position: {x: 0.262693, y: -0.00031197816, z: 0.09244755}
+          position: {x: 0.26269305, y: -0.00031197816, z: 0.09244755}
           rotation: {x: 0, y: -0, z: -0.000010245284}
         cameraSettings:
           width: 640
           height: 480
           fovDegrees: 80
-    - rid: 70835059691356256
+    - rid: 2561570062490140776
       type: {class: CameraCfg, ns: , asm: Assembly-CSharp}
       data:
         name: SteCam
         type: camera
         enabled: 0
         frameId: stereo_link
-        frequency: 30
+        frequency: 15
         rosNamespace: stereo_camera
         rosTopic: 
         pose:
-          position: {x: 0.25719303, y: 0.0012880191, z: 0.09504755}
+          position: {x: 0.25719297, y: 0.0012880191, z: 0.09504755}
           rotation: {x: 0, y: -0, z: -0.000010245284}
         cameraSettings:
           width: 640
