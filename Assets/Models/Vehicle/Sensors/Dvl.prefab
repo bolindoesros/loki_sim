@@ -699,6 +699,7 @@ GameObject:
   - component: {fileID: 5178658974479746030}
   - component: {fileID: 1670192779605329976}
   - component: {fileID: 4253966783413331506}
+  - component: {fileID: 2184564660529638018}
   m_Layer: 0
   m_Name: Dvl sensor
   m_TagString: Untagged
@@ -758,7 +759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: MDS_Runtime::MDS.ROS.Sensors.DvlPublisher
   _frequency: 10
-  _topicName: data
+  _topicName: twist_stamped
   _serializer:
     _msg:
       twist:
@@ -874,7 +875,9 @@ MonoBehaviour:
   _buoyantForceCoefficient: 1
   _fluidDensity: 1000
   _pressureDragCoefficient: 1
+  _suctionDragCoefficient: 0.2
   _frictionDragCoefficient: 0.003
+  _accelerationDragCoefficient: 0.03333334
   _useOcclusion: 1
   _vehicleLayer:
     serializedVersion: 2
@@ -925,7 +928,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _previewMeshNormals: 0
-  _previewMeshGeometricNormals: 0
   forceVisualScale: 0.001
   colorVisualScale: 0.01
   debugLinearVelocity: {x: 0, y: 0, z: 0}
@@ -969,6 +971,23 @@ MonoBehaviour:
   _frequency: 1
   _frame_id: dvl_link
   _children: []
+--- !u!114 &2184564660529638018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8597378150689214856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 286750da2cd6a7d43b6d1c2c8515c8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnitySensorsROSRuntime::UnitySensors.ROS.Utils.Lifecycle.LifecycleManager
+  _nodeName: raw_data_publisher
+  _referenceComponents:
+  - {fileID: 2469933108395350665}
+  - {fileID: 2869240390022556808}
+  _currentLifecycleState: 1
 --- !u!1 &8707462967019714997
 GameObject:
   m_ObjectHideFlags: 0

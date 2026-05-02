@@ -7,6 +7,7 @@ using UnitySensors.Sensor.GNSS;
 using UnitySensors.DataType.Geometry;
 using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 using Cinemachine;
+using UnitySensors.Sensor.TF;
 
 [System.Serializable]
 public class RobotType
@@ -31,6 +32,11 @@ public class SceneCfgLoader : MonoBehaviour
         if (!enabled)
             return;
 
+        LoadScene();
+    }
+
+    public void LoadScene()
+    {
         if (robotTypes == null || robotTypes.Count == 0)
         {
             Debug.LogError("SceneCfgLoader: No robot types specified in the inspector. Cannot load any actors.");
@@ -53,7 +59,7 @@ public class SceneCfgLoader : MonoBehaviour
         // Attempt to retrieve/create SceneCfg
         if (File.Exists(filePath))
         {
-            Debug.Log("File exists at " + filePath + ", loading robot config.");
+            Debug.Log("File exists at " + filePath + ", loading scene config.");
             string json = File.ReadAllText(filePath);
             sceneCfg = ScriptableObject.CreateInstance<SceneCfg>();
             JsonConvert.PopulateObject(json, sceneCfg);
@@ -94,7 +100,8 @@ public class SceneCfgLoader : MonoBehaviour
                     sceneCfg.geoOrigin.altitude
                 );
             }
-        } else Debug.LogWarning("SceneCfgLoader: GeoOrigin settings are missing in sceneCfg. Ignore setting.");
+        }
+        else Debug.LogWarning("SceneCfgLoader: GeoOrigin settings are missing in sceneCfg. Ignore setting.");
 
         // Make sure there are actors to load
         if (sceneCfg.actors == null || sceneCfg.actors.Count == 0)
@@ -103,7 +110,13 @@ public class SceneCfgLoader : MonoBehaviour
             return;
         }
 
-        var robotCfgLoaders = FindObjectsByType<RobotCfgLoader>(FindObjectsSortMode.None);
+        // Remove all current actors (game objects with RobotCfgLoader component) in the scene to avoid duplicates
+        var existingActors = FindObjectsByType<RobotCfgLoader>(FindObjectsSortMode.None);
+        foreach (var actor in existingActors)
+        {
+            DestroyImmediate(actor.gameObject);
+        }
+
         int loadedActorCount = 0;
         foreach (ActorCfg actor in sceneCfg.actors)
         {
@@ -124,7 +137,14 @@ public class SceneCfgLoader : MonoBehaviour
             if (robotType == null)
             {
                 Debug.LogWarning($"SceneCfgLoader: Actor of type '{actor.type}' does not have a corresponding type under SceneCfgLoader. Please check. " +
-                    $"Skip this actor for now.");
+                    $"Ignoring this actor.");
+                continue;
+            }
+
+            // Check null robot prefab
+            if (robotType.prefab == null)
+            {
+                Debug.LogWarning($"SceneCfgLoader: Robot prefab for actor type '{actor.type}' is null. Ignoring this robot.");
                 continue;
             }
 
@@ -139,7 +159,7 @@ public class SceneCfgLoader : MonoBehaviour
             }
 
             // Attempt to load robot config
-            RobotCfg robotCfg;
+            RobotCfg robotCfg = null;
             if (File.Exists(fullRobotCfgPath))
             {
                 Debug.Log("File exists at " + fullRobotCfgPath + ", loading robot config.");
@@ -147,56 +167,33 @@ public class SceneCfgLoader : MonoBehaviour
                 robotCfg = ScriptableObject.CreateInstance<RobotCfg>();
                 JsonConvert.PopulateObject(json, robotCfg);
             }
-            else
+            else Debug.LogWarning($"RobotCfgLoader: Config file not found at {fullRobotCfgPath}. Using default RobotCfg associated with this prefab.");
+
+            // Instantiate robot prefab first, in order to retrieve the default RobotCfg later
+            GameObject robot = Instantiate(robotType.prefab);
+            RobotCfgLoader robotCfgLoader = robot.GetComponentInChildren<RobotCfgLoader>();
+
+            // Check null robot cfg loader to be safe, but by right must have
+            if (robotCfgLoader == null)
             {
-                Debug.LogWarning($"SceneCfgLoader: Robot file cfg not found at {fullRobotCfgPath}. Ignoring this robot.");
+                Debug.LogWarning($"SceneCfgLoader: Robot prefab '{robotType.prefab.name}' does not have a RobotCfgLoader component in its children. " +
+                    $"Cannot load robot config. Ignoring this robot.");
                 continue;
             }
 
-            // Check null robotCfg
+            // Assign default RobotCfg from prefab if null, and create new json file
             if (robotCfg == null)
             {
-                Debug.LogWarning("Attemped to create robot cfg but failed. Please check.");
-                continue;
-            }
-
-            // Check null robot prefab
-            if (robotType.prefab == null)
-            {
-                Debug.LogWarning($"SceneCfgLoader: Robot prefab for actor type '{actor.type}' is null. Ignoring this robot.");
-                continue;
-            }
-
-            // Check if robot of this type (and name) already exists in robotCfgLoaders
-            RobotCfgLoader robotCfgLoader = robotCfgLoaders.FirstOrDefault(
-                loader => loader.robotType == actor.type &&
-                (string.IsNullOrEmpty(actor.name) || loader.gameObject.name == actor.name));
-
-            GameObject robot;
-            if (robotCfgLoader != null)
-            {
-                Debug.Log($"SceneCfgLoader: Robot of type '{actor.type}' with name '{actor.name}' already exists in the scene. Skipping instantiation.");
-                robot = robotCfgLoader.gameObject;
-            }
-            // Else, instantiate prefab
-            else
-            {
-                
-                robot = Instantiate(robotType.prefab);
-                robotCfgLoader = robot.GetComponentInChildren<RobotCfgLoader>();
-
-                if (robotCfgLoader == null)
-                {
-                    Debug.LogWarning($"SceneCfgLoader: Robot prefab '{robotType.prefab.name}' does not have a RobotCfgLoader component in its children. " +
-                        $"Cannot load robot config. Ignoring this robot.");
-                    continue;
-                }
+                robotCfg = robotCfgLoader.robotCfg;
+                string jsonString = JsonConvert.SerializeObject(robotCfg);
+                File.WriteAllText(fullRobotCfgPath, jsonString);
+                Debug.Log("Created default robot config at " + fullRobotCfgPath);
             }
 
             // Set robot pose
             Pose origin = actor.origin ?? new Pose();
             Vector3 spawnPos = ENU.ConvertToRUF(origin.position);
-            Quaternion spawnRot = Quaternion.Euler(ENU.ConvertToRUF(origin.rotation));
+            Quaternion spawnRot = Quaternion.Euler(-ENU.ConvertToRUF(origin.rotation));
 
             if (robot.TryGetComponent<ArticulationBody>(out var artBody))
             {
@@ -204,8 +201,7 @@ public class SceneCfgLoader : MonoBehaviour
                 artBody.linearVelocity = Vector3.zero;
                 artBody.angularVelocity = Vector3.zero;
             }
-            else
-                robot.transform.SetPositionAndRotation(spawnPos, spawnRot);
+            else robot.transform.SetPositionAndRotation(spawnPos, spawnRot);
 
             // Load name and namespace if exist
             if (!string.IsNullOrEmpty(actor.name))
@@ -213,6 +209,7 @@ public class SceneCfgLoader : MonoBehaviour
                 robot.name = actor.name;
                 robotCfg.rosNamespace = actor.name;
             }
+            else robot.name = actor.type;
 
             // Assign controllerCfg if exist
             if (actor.controllerCfg != null)
@@ -232,11 +229,19 @@ public class SceneCfgLoader : MonoBehaviour
                 {
                     freeLookCamera.Follow = robot.transform;
                     freeLookCamera.LookAt = robot.transform;
-                } 
+                }
                 else Debug.LogWarning("SceneCfgLoader: No CinemachineFreeLook camera found in the scene. You should have one.");
             }
 
             loadedActorCount++;
+        }
+
+        // Refresh map tf publisher for the new actors 
+        var tfLinks = FindObjectsByType<TFLink>(FindObjectsSortMode.None);
+        foreach (var tfLink in tfLinks)
+        {
+            if (tfLink.IsMapLink())
+                tfLink.RefreshChildren();
         }
 
         Debug.Log($"SceneCfgLoader: Successfully loaded {loadedActorCount} actors.");

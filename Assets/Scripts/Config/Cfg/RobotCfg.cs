@@ -13,7 +13,7 @@ public class RobotCfg : ScriptableObject
     [JsonProperty("base-link-id")] public string baseLinkId = "";
     [JsonProperty("tf-publisher")] public TfPublisherCfg tfPublisher = new();
 
-    [SerializeReference]
+    [SerializeReference] // Force Unity to allow it to be null
     [JsonProperty("controller")] public ControllerCfg controllerCfg = new();
 
     [SerializeReference]

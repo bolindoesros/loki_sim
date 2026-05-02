@@ -1,0 +1,29 @@
+{
+  "actors": [
+    {
+      "type": "uuv_blitz",
+      "name": "uuv",
+      "origin": {
+        "position": {
+          "x": -0.814,
+          "y": -1.46,
+          "z": -0.6
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "robot-config": "uuv_blitz.json"
+    }
+  ],
+  "clock": {
+    "time-step": 0.002
+  },
+  "geo-origin": {
+    "latitude": 1.349914,
+    "longitude": 103.677571,
+    "altitude": 0.0
+  }
+}

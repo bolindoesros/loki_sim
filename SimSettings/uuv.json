@@ -1,5 +1,5 @@
 {
-  "ros-namespace": "uuv_kevin",
+  "ros-namespace": "uuv",
   "base-link-id": "base_link",
   "tf-publisher": {
     "enabled": true,
@@ -25,14 +25,14 @@
       "ros-topic": "imu/data",
       "pose": {
         "position": {
-          "x": -0.252307057,
-          "y": 0.09248793,
-          "z": -0.08485246
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
         },
         "rotation": {
           "x": 0.0,
           "y": 0.0,
-          "z": -1.02452841E-05
+          "z": 0.0
         }
       },
       "imu-settings": {
@@ -52,14 +52,14 @@
       "ros-topic": "data",
       "pose": {
         "position": {
-          "x": -0.219668984,
-          "y": -0.12828055,
-          "z": -0.126152456
+          "x": -0.102921844,
+          "y": 0.0,
+          "z": -0.220000029
         },
         "rotation": {
           "x": 0.0,
           "y": 0.0,
-          "z": -1.02452841E-05
+          "z": 0.0
         }
       },
       "dvl-settings": {
@@ -75,14 +75,14 @@
       "ros-namespace": "rgb_camera",
       "pose": {
         "position": {
-          "x": 0.262693048,
-          "y": -0.000311978161,
-          "z": 0.09244755
+          "x": 0.180000067,
+          "y": 0.0,
+          "z": 0.0
         },
         "rotation": {
           "x": 0.0,
           "y": 0.0,
-          "z": -1.02452841E-05
+          "z": 0.0
         }
       },
       "camera-settings": {
@@ -100,14 +100,14 @@
       "ros-namespace": "stereo_camera",
       "pose": {
         "position": {
-          "x": 0.257192969,
-          "y": 0.00128801912,
-          "z": 0.09504755
+          "x": 0.5095,
+          "y": -0.0911999941,
+          "z": 0.179899991
         },
         "rotation": {
           "x": 0.0,
           "y": 0.0,
-          "z": -1.02452841E-05
+          "z": 0.0
         }
       },
       "camera-settings": {

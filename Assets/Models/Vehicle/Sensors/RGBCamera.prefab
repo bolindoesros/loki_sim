@@ -182,10 +182,10 @@ GameObject:
   - component: {fileID: 2324062730876008817}
   - component: {fileID: 2324062730876008823}
   - component: {fileID: 2324062730876008820}
-  - component: {fileID: 6089992385107728241}
   - component: {fileID: 6636179731830829730}
   - component: {fileID: 7963556697855078731}
   - component: {fileID: 5835222611745140708}
+  - component: {fileID: 800466446830242058}
   m_Layer: 0
   m_Name: RGBCamera_ros
   m_TagString: Untagged
@@ -239,7 +239,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.04
+  near clip plane: 0.08
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -340,35 +340,6 @@ MonoBehaviour:
       _source: {fileID: 2324062730876008823}
       _frame_id: camera_optical_frame
     _horizontalCameraOffset: 0
---- !u!114 &6089992385107728241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2324062730876008829}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e226440246ae84f438f484a93cb23d7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnitySensorsROSRuntime::UnitySensors.ROS.Publisher.Sensor.ImageMsgPublisher
-  _frequency: 15
-  _topicName: image/raw
-  _serializer:
-    _msg:
-      height: 0
-      width: 0
-      encoding: 
-      is_bigendian: 0
-      step: 0
-      data: 
-    _source: {fileID: 2324062730876008823}
-    _sourceTexture: 0
-    _encoding: 0
-    _encodedTexture: {fileID: 0}
-    _header:
-      _source: {fileID: 0}
-      _frame_id: camera_optical_frame
 --- !u!114 &6636179731830829730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,7 +363,7 @@ MonoBehaviour:
     _header:
       _source: {fileID: 0}
       _frame_id: camera_optical_frame
-    quality: 75
+    quality: 80
 --- !u!114 &7963556697855078731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,6 +518,26 @@ MonoBehaviour:
   resolution: {x: 640, y: 480}
   displayWindowPrefab: {fileID: 263734985036153821, guid: 21c06386cb647b743a819f9b546e5755,
     type: 3}
+--- !u!114 &800466446830242058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2324062730876008829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 286750da2cd6a7d43b6d1c2c8515c8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnitySensorsROSRuntime::LifecycleManager
+  _nodeName: 
+  _referenceComponents:
+  - {fileID: 2324062730876008817}
+  - {fileID: 2324062730876008823}
+  - {fileID: 2324062730876008820}
+  - {fileID: 6636179731830829730}
+  - {fileID: 7963556697855078731}
+  _currentLifecycleState: 1
 --- !u!1 &6745536012164464664
 GameObject:
   m_ObjectHideFlags: 0

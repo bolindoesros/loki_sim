@@ -26,6 +26,7 @@ public class ActorCfg
     /// (Optional) Name of this actor.
     /// If provided, will override the rosNamespace in the robot config, as well as the GameObject name.
     /// </summary>
+    [SerializeReference] // Force Unity to allow it to be null
     public string name;
 
     /// <summary>

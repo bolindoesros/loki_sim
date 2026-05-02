@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2116b7f84275c4d877f9ac14990716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnitySensorsRuntime::UnitySensors.Sensor.GNSS.GeoCoordinateSystem
-  _coordinate:
-    latitude: 1.281109
-    longitude: 103.871279
+  coordinate:
+    latitude: 1.349914
+    longitude: 103.677571
     altitude: 0

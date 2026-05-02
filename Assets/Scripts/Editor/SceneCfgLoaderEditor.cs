@@ -107,18 +107,21 @@ public class SceneCfgLoaderEditor : Editor
             Debug.LogWarning("Multiple GeoCoordinateSystem objects found in scene. This is wrong. Please check! For now, use the first instance.");
         else if (geoOrigins.Length == 0)
             Debug.LogWarning("No GeoCoordinateSystem objects found in scene.");
-
-        var geoOrigin = geoOrigins[0];
-        if (geoOrigin != null)
+        else
         {
-            sceneCfg.geoOrigin = new()
+            var geoOrigin = geoOrigins[0];
+            if (geoOrigin != null)
             {
-                latitude = geoOrigin.coordinate.latitude,
-                longitude = geoOrigin.coordinate.longitude,
-                altitude = geoOrigin.coordinate.altitude
-            };
+                sceneCfg.geoOrigin = new()
+                {
+                    latitude = geoOrigin.coordinate.latitude,
+                    longitude = geoOrigin.coordinate.longitude,
+                    altitude = geoOrigin.coordinate.altitude
+                };
+            }
+            else Debug.LogWarning("Found one GeoCoordinateSystem but it's null???");
         }
-        else Debug.LogWarning("Found one GeoCoordinateSystem but it's null???");
+
 
         // Update robots in scene (assuming a robot must have RobotCfgLoader component)
         List<ActorCfg> actorCfgs = new();
@@ -146,10 +149,11 @@ public class SceneCfgLoaderEditor : Editor
             ActorCfg actorCfg = new()
             {
                 type = robotCfgLoader.robotType,
+                name = robotCfg.rosNamespace,
                 origin = new Pose
                 {
                     position = ENU.ConvertFromRUF(robotTransform.position),
-                    rotation = ENU.ConvertFromRUF(robotTransform.eulerAngles)
+                    rotation = -ENU.ConvertFromRUF(robotTransform.eulerAngles)
                 },
                 robotCfgPath = robotCfgLoader.fileName
             };

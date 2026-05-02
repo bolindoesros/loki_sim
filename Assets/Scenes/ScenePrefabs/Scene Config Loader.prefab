@@ -56,3 +56,6 @@ MonoBehaviour:
   - type: uav_x650
     prefab: {fileID: 1655077866179983990, guid: 11af8e31f6b2e574896cb98386f872a8,
       type: 3}
+  - type: uuv_blitz
+    prefab: {fileID: 7679767423651338670, guid: 5f6df58de6eb81844ad6696627621099,
+      type: 3}

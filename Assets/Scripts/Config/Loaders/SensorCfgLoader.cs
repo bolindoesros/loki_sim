@@ -6,8 +6,10 @@ using UnityEngine;
 using UnityEngine.Perception.GroundTruth;
 using UnitySensors.DataType.LiDAR;
 using UnitySensors.ROS.Publisher;
+using UnitySensors.ROS.Publisher.Camera;
 using UnitySensors.ROS.Publisher.Sensor;
 using UnitySensors.ROS.Utils.Namespacing;
+using UnitySensors.ROS.Utils.Lifecycle;
 using UnitySensors.Sensor;
 using UnitySensors.Sensor.Camera;
 using UnitySensors.Sensor.LiDAR;
@@ -23,7 +25,6 @@ public class SensorCfgLoader : MonoBehaviour
     [SerializeField] GameObject cameraPrefab;
     [SerializeField] GameObject imuPrefab;
     [SerializeField] GameObject dvlPrefab;
-    [SerializeField] GameObject pCameraPrefab;
     [SerializeField] GameObject lidarPrefab;
     [SerializeField] GameObject gnssPrefab;
 
@@ -45,7 +46,6 @@ public class SensorCfgLoader : MonoBehaviour
             { "camera", cameraPrefab },
             { "imu", imuPrefab },
             { "dvl", dvlPrefab },
-            { "perception-camera", pCameraPrefab },
             { "lidar", lidarPrefab },
             { "gnss", gnssPrefab }
         };
@@ -53,6 +53,12 @@ public class SensorCfgLoader : MonoBehaviour
 
     public void LoadSensorConfigs(List<SensorCfg> sensorCfgs)
     {
+        // First, destroy all existing sensor children (child transform of this gameobject) to avoid duplicates
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            DestroyImmediate(transform.GetChild(i).gameObject);
+        }
+
         foreach (SensorCfg cfg in sensorCfgs)
         {
             if (!prefabMap.TryGetValue(cfg.type, out var prefab))
@@ -61,37 +67,27 @@ public class SensorCfgLoader : MonoBehaviour
                 continue;
             }
 
-            // Check if a child GameObject with the same name already exists
-            Transform existingChild = transform.Find(cfg.name);
-            GameObject instance;
-            if (existingChild != null)
-            {
-                Debug.Log($"SensorLoader: Sensor '{cfg.name}' already exists, skipping instantiation.");
-                instance = existingChild.gameObject;
-            }
-            else
-            {
-                // Instantiate sensor prefab and assign names
-                instance = Instantiate(prefab, transform);
-                instance.name = cfg.name;
-            }
+            // Instantiate sensor prefab as child of this gameobject
+            GameObject instance = Instantiate(prefab, transform);
+            instance.name = cfg.name;
 
             // Set transform
-            instance.transform.position = transform.root.TransformPoint(FLU.ConvertToRUF(cfg.pose.position));
-            instance.transform.rotation = transform.root.rotation * Quaternion.Euler(FLU.ConvertToRUF(cfg.pose.rotation));
+            instance.transform.SetPositionAndRotation(
+                transform.root.TransformPoint(FLU.ConvertToRUF(cfg.pose.position)),
+                transform.root.rotation * Quaternion.Euler(-FLU.ConvertToRUF(cfg.pose.rotation))
+            );
 
             // Set namespace
-            var nsManager = instance.GetComponent<NamespaceManager>();
-            if (nsManager != null)
+            if (instance.TryGetComponent<NamespaceManager>(out var nsManager))
             {
                 nsManager.CurrentNamespace = cfg.rosNamespace;
             }
 
-            // Set frame id for TFLink
-            var tfLink = instance.GetComponentInChildren<TFLink>();
-            if (tfLink != null)
+            // Set frame id for TFLink (if only one exists; for sensors with multiple TFLinks like stereo cameras, ignore)
+            var tfLinks = instance.GetComponentsInChildren<TFLink>();
+            if (tfLinks.Length == 1)
             {
-                tfLink.FrameId = cfg.frameId;
+                tfLinks[0].FrameId = cfg.frameId;
             }
 
             // Set frequency for all publishers
@@ -110,7 +106,7 @@ public class SensorCfgLoader : MonoBehaviour
             var sensors = instance.GetComponentsInChildren<UnitySensor>();
             foreach (var sensor in sensors)
             {
-                if (sensor is not TFLink) sensor.frequency = cfg.frequency;
+                if (sensor is not TFLink) sensor.Frequency = cfg.frequency;
             }
 
             var phySensors = instance.GetComponentsInChildren<UnityPhysicsSensor>();
@@ -118,35 +114,79 @@ public class SensorCfgLoader : MonoBehaviour
             {
                 phySensor.frequency = cfg.frequency;
             }
-
+                
             // Assign properties automatically
             ApplySensorSpecificConfig(instance, cfg);
 
             // Enable/disable sensor
             instance.SetActive(cfg.enabled);
+
+            // Set lifecycle state
+            var lifecycleManager = instance.GetComponentInChildren<LifecycleManager>();
+            if (lifecycleManager != null && cfg.lifecycleSettings != null)
+            {
+                lifecycleManager.NodeName = cfg.lifecycleSettings.nodeName;
+                if (!cfg.enabled)
+                    lifecycleManager.CurrentLifecycleState = LifecycleState.Unconfigured;
+                else if (cfg.enabled && !cfg.lifecycleSettings.active)
+                    lifecycleManager.CurrentLifecycleState = LifecycleState.Inactive;
+                else if (cfg.enabled && cfg.lifecycleSettings.active)
+                    lifecycleManager.CurrentLifecycleState = LifecycleState.Active;
+                // If !enabled but active, it's an invalid state. Quietly ignore.
+            }
+
+            Debug.Log($"SensorLoader: Loaded sensor '{cfg.name}' of type '{cfg.type}'");
         }
+
+        // Force refresh after creating new sensors
+        if (TryGetComponent<TFLink>(out var sensorTfLink))
+            sensorTfLink.RefreshChildren();
     }
 
     void ApplySensorSpecificConfig(GameObject instance, SensorCfg cfg)
     {
         switch (cfg)
         {
-            case CameraCfg camCfg:               
-                var cams = instance.GetComponentsInChildren<CameraSensor>();
-                foreach (var cam in cams)
+            case CameraCfg camCfg:
+                var cameraSensor = instance.GetComponentInChildren<CameraSensor>();
+                if (cameraSensor != null)
                 {
-                    cam.Fov = camCfg.cameraSettings.fovDegrees;
-                    cam.Resolution = new Vector2Int(camCfg.cameraSettings.width, camCfg.cameraSettings.height);
+                    cameraSensor.Fov = camCfg.cameraSettings.fovDegrees;
+                    cameraSensor.Resolution = new Vector2Int(camCfg.cameraSettings.width, camCfg.cameraSettings.height);
+                    cameraSensor.Frequency = cfg.frequency;
                 }
-                var imagePublishers = instance.GetComponentsInChildren<CompressedImageMsgPublisher>();
-                foreach (var publisher in imagePublishers)
+
+                var compressedImgPub = instance.GetComponentInChildren<CompressedImageMsgPublisher>();
+                if (compressedImgPub != null)
                 {
+                    compressedImgPub.TopicName = camCfg.cameraRosSettings.imageTopic;
+                    compressedImgPub.Frequency = cfg.frequency;
+                    compressedImgPub.Serializer.Header.FrameId = cfg.frameId;
+                }
+
+                var cameraInfoPub = instance.GetComponentInChildren<CameraInfoMsgPublisher>();
+                if (cameraInfoPub != null)
+                {
+                    cameraInfoPub.TopicName = camCfg.cameraRosSettings.cameraInfoTopic;
+                    cameraInfoPub.Serializer.Header.FrameId = cfg.frameId;
+                }
+
+                break;
+
+            case StereoCameraCfg stereoCamCfg:               
+                var cameraSensors = instance.GetComponentsInChildren<CameraSensor>();
+                foreach (var cam in cameraSensors)
+                {
+                    cam.Fov = stereoCamCfg.cameraSettings.fovDegrees;
+                    cam.Resolution = new Vector2Int(stereoCamCfg.cameraSettings.width, stereoCamCfg.cameraSettings.height);
+                    cam.Frequency = cfg.frequency;
+                }
+
+                var compressedImgPubs = instance.GetComponentsInChildren<CompressedImageMsgPublisher>();
+                foreach (var publisher in compressedImgPubs)
                     publisher.Frequency = cfg.frequency;
-                }
-                if (imagePublishers.Length == 1)
-                {
-                    imagePublishers[0].Serializer.Header.FrameId = cfg.frameId;
-                }
+                // TODO: Set frame id for the image publisher and info publisher of each camera in stereo camera rig
+                // For now, these info will be hardcoded in the prefab
                 break;
 
             case ImuCfg imuCfg:
@@ -274,7 +314,7 @@ public class SensorCfgLoader : MonoBehaviour
             cfg.type = sensorType;
             cfg.enabled = sensorObject.activeSelf;
             cfg.pose.position = FLU.ConvertFromRUF(transform.root.InverseTransformPoint(sensorObject.transform.position));
-            cfg.pose.rotation = FLU.ConvertFromRUF((Quaternion.Inverse(transform.root.rotation) * sensorObject.transform.rotation).eulerAngles);
+            cfg.pose.rotation = -FLU.ConvertFromRUF((Quaternion.Inverse(transform.root.rotation) * sensorObject.transform.rotation).eulerAngles);
 
             // Get namespace
             if (sensorObject.TryGetComponent<NamespaceManager>(out var nsManager))
@@ -282,6 +322,7 @@ public class SensorCfgLoader : MonoBehaviour
                 cfg.rosNamespace = nsManager.CurrentNamespace;
             } else Debug.LogWarning($"SensorCfgLoader: NamespaceManager not found on sensor '{cfg.name}'");
 
+            // Get frame id
             TFLink tFLink = sensorObject.GetComponentInChildren<TFLink>();
             if (tFLink != null)
             {
@@ -296,6 +337,18 @@ public class SensorCfgLoader : MonoBehaviour
                 cfg.frequency = publisher.Frequency;
                 if (publishers.Length == 1) cfg.rosTopic = publisher.TopicName;
             } else Debug.LogWarning($"SensorCfgLoader: No RosMsgPublisher found on sensor '{cfg.name}'");
+
+            // Get lifecycle state (there should be only one LifecycleManager)
+            var lifecycleManager = sensorObject.GetComponentInChildren<LifecycleManager>();
+            if (lifecycleManager != null)
+            {
+                cfg.lifecycleSettings = new()
+                {
+                    nodeName = lifecycleManager.NodeName,
+                    active = lifecycleManager.CurrentLifecycleState == LifecycleState.Active
+                };
+            }
+            else cfg.lifecycleSettings = null;
         }
 
         return cfg;
@@ -305,9 +358,10 @@ public class SensorCfgLoader : MonoBehaviour
     {
         var cam = sensorObject.GetComponentInChildren<CameraSensor>();
         var imagePublisher = sensorObject.GetComponentInChildren<CompressedImageMsgPublisher>();
-        if (cam == null || imagePublisher == null)
+        var cameraInfoPublisher = sensorObject.GetComponentInChildren<CameraInfoMsgPublisher>();
+        if (cam == null || imagePublisher == null || cameraInfoPublisher == null)
         {
-            Debug.LogError("SensorCfgLoader: Camera or Image Publisher not found");
+            Debug.LogError("SensorCfgLoader: Camera or Image Publisher or Camera Info Publisher not found");
             return null;
         }
 
@@ -316,6 +370,8 @@ public class SensorCfgLoader : MonoBehaviour
         cfg.cameraSettings.height = cam.Resolution.y;
         cfg.cameraSettings.fovDegrees = (int)cam.Fov;
         cfg.frequency = imagePublisher.Frequency;
+        cfg.cameraRosSettings.imageTopic = imagePublisher.TopicName;
+        cfg.cameraRosSettings.cameraInfoTopic = cameraInfoPublisher.TopicName;
 
         return cfg;
     }

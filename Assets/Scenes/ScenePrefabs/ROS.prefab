@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cde12085c739d548a159c84b40bbd2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnitySensorsROSRuntime::UnitySensors.ROS.Publisher.Tf2.TFMessageMsgPublisher
-  _frequency: 30
+  _frequency: 10
   _topicName: tf
   _serializer:
     _msg:
@@ -68,7 +68,7 @@ MonoBehaviour:
     _source: {fileID: 3630806859810014041}
     recurseFindChildLinks: 0
     useBaseLinkNameAsPrefix: 1
-    suffix: 
+    suffix: _gt
     _header:
       _source: {fileID: 0}
       _frame_id: 

@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 665f2b8961c7e2947909e34cd3981ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _serviceName: cmd/launch_torpedo
+  _serviceName: cmd/trigger_torpedo
 --- !u!1 &6196586332953530652
 GameObject:
   m_ObjectHideFlags: 0

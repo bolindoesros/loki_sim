@@ -13,7 +13,7 @@ public class FPSCounter : MonoBehaviour
     
     private float accumulatedTime = 0f;
     private int frames = 0;
-    private float currentFPS = 0f;
+    //private float currentFPS = 0f;
     private float timeLeft;
 
     void Start()

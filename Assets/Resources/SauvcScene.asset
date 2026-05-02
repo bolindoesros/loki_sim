@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9759d0b1e069b44eb6fe701088216a1, type: 3}
+  m_Name: SauvcScene
+  m_EditorClassIdentifier: Assembly-CSharp::SceneCfg
+  actors:
+  - type: uuv_blitz
+    name: uuv
+    controllerCfg:
+      rid: -2
+    origin:
+      position: {x: -0.814, y: -1.46, z: -0.6}
+      rotation: {x: 0, y: 0, z: 0}
+    robotCfgPath: uuv_blitz.json
+  clock:
+    fixedDeltaTime: 0.002
+  geoOrigin:
+    latitude: 1.349914
+    longitude: 103.677571
+    altitude: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

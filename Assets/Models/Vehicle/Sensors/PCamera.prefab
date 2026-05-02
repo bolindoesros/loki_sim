@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1310442147908435022}
   - component: {fileID: 3388841205810298315}
-  - component: {fileID: 1058704955759836962}
   - component: {fileID: 8152946546174443974}
   - component: {fileID: 2867353840367552860}
   - component: {fileID: 3939028408430276916}
   - component: {fileID: 3903982961549140389}
   - component: {fileID: 1005351444852156232}
+  - component: {fileID: 1480450761857878131}
   m_Layer: 0
   m_Name: PerceptionCamera
   m_TagString: MainCamera
@@ -50,29 +50,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4467405dbcbd3d64ab4363e9ae8bb813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outputView: {fileID: 0}
   m_CameraSensor:
     rid: 8395507240650407941
   m_Labelers:
   - rid: 8395507240650407942
+  - rid: 2561570315637620837
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   id: camera
   description: 
-  captureRgbImages: 0
+  captureRgbImages: 1
   firstCaptureFrame: 0
-  captureTriggerMode: 0
+  captureTriggerMode: 1
   manualSensorAffectSimulationTiming: 0
   simulationDeltaTime: 0.0166
   framesBetweenCaptures: 1
-  showVisualizations: 0
+  showVisualizations: 1
   alphaThreshold: 0.1
   overrideLayerMask: 0
   useAccumulation: 0
   references:
     version: 2
     RefIds:
+    - rid: 2561570315637620837
+      type: {class: InstanceSegmentationLabeler, ns: UnityEngine.Perception.GroundTruth.Labelers,
+        asm: Unity.Perception.Runtime}
+      data:
+        enabled: 1
+        annotationId: instance segmentation
+        idLabelConfig: {fileID: 11400000, guid: b880cddd9c6dfec43a8e9dd8523b07de,
+          type: 2}
     - rid: 8395507240650407941
       type: {class: UnityCameraSensor, ns: UnityEngine.Perception.GroundTruth.Sensors,
         asm: Unity.Perception.Runtime}
@@ -86,29 +94,6 @@ MonoBehaviour:
         annotationId: bounding box
         idLabelConfig: {fileID: 11400000, guid: b880cddd9c6dfec43a8e9dd8523b07de,
           type: 2}
---- !u!114 &1058704955759836962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5735668799460877533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 394ca94f794cc7b46935b1ba802e1e76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Perception.Runtime::UnityEngine.Perception.ROS.BoundingBoxPublisher
-  _frequency: 30
-  _topicName: detection/bounding_boxes
-  _serializer:
-    _msg:
-      bounding_boxes: []
-    m_ImageSize: {x: 1280, y: 720}
-    m_PerceptionCamera: {fileID: 3388841205810298315}
-    m_ConfidenceRate: 0.7
-    m_Header:
-      _source: {fileID: 0}
-      _frame_id: perception_camera_link
 --- !u!114 &8152946546174443974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,6 +322,18 @@ MonoBehaviour:
   resolution: {x: 640, y: 480}
   displayWindowPrefab: {fileID: 263734985036153821, guid: 21c06386cb647b743a819f9b546e5755,
     type: 3}
+--- !u!114 &1480450761857878131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5735668799460877533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa219e9cec680044bbfdf4ba3f1760ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PCamManualCapture
 --- !u!1 &8347420801520522871
 GameObject:
   m_ObjectHideFlags: 0

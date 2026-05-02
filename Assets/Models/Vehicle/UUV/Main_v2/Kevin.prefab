@@ -11369,8 +11369,6 @@ MonoBehaviour:
     type: 3}
   dvlPrefab: {fileID: 575132099962276772, guid: e023d96d2d7f8c44a91d9ee7b4834774,
     type: 3}
-  pCameraPrefab: {fileID: 8347420801520522871, guid: f875cfd7a1a0fe8479b8e186f0770af9,
-    type: 3}
   lidarPrefab: {fileID: 7733431181577020600, guid: 9244081eb39740a4b8d5b98f1c7cd3ac,
     type: 3}
   gnssPrefab: {fileID: 6185576993927898735, guid: 15a4be1c391b246479f899852436fa1d,
